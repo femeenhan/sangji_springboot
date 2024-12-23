@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>상지국제특허</title>
+  <th:block th:replace="common/config :: config" />
+</head>
+<body>
+  <div id="skip_navi">
+    <a href="#container">본문바로가기</a>
+  </div>
+
+  <header th:replace="common/header :: header"></header>
+
+  <th:block layout:fragment="content"/>
+
+  <footer th:replace="common/footer :: footer"></footer>
+</body>
+</html>

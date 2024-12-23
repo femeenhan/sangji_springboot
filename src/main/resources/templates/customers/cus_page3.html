@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout}">
+<head layout:fragment="config">
+  <title>상지국제특허</title>
+  <link rel="stylesheet" href="/css/customers.css"/>
+  <script src="/js/customers.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+  <body>
+    <div id="wrap">
+      <main id="sub_container" layout:fragment="content">
+        <section class="page_top">
+          <div class="main_title">
+            <h1>고객센터</h1>
+            <p>Home > 고객센터 > 자료실</p>
+          </div>
+        </section>
+        <section class="page_bottom">
+          <div class="sub_title">
+            <h2>자료실</h2>
+            <h3>
+              <span>상지국제특허법률사무소</span>가 제공하는 각종 자료입니다.
+            </h3>
+          </div>
+          <div class="sub_section">
+            <h2 class="blind">서브</h2>
+            <div class="inner">
+              <div class="search_wrap">
+                <div class="sel_option">
+                  <select>
+                    <option value="title">제목</option>
+                    <option value="writer">작성자</option>
+                    <option value="title_content">제목+내용</option>
+                  </select>
+                </div>
+                <input
+                  type="text"
+                  placeholder="검색어를 입력하세요"
+                  name="search"
+                />
+                <button>검색</button>
+              </div>
+              <table class="table table-hover" style="width: 80%">
+                <thead>
+                  <tr>
+                    <th style="width: 10%">번호</th>
+                    <th style="width: 60%">제목</th>
+                    <th style="width: 10%">작성자</th>
+                    <th style="width: 10%">작성일</th>
+                    <th style="width: 10%">조회</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>81</td>
+                    <td><a href="#">자료입니다.</a></td>
+                    <td>관리자</td>
+                    <td>2020-12-21</td>
+                    <td>2076</td>
+                  </tr>
+                  <tr>
+                    <td>80</td>
+                    <td>
+                      <a href="#"> 자료입니다.</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2020-12-16</td>
+                    <td>1906</td>
+                  </tr>
+                  <tr>
+                    <td>79</td>
+                    <td>
+                      <a href="#">자료입니다.</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2020-12-08</td>
+                    <td>1959</td>
+                  </tr>
+                  <tr>
+                    <td>81</td>
+                    <td><a href="#">자료입니다.</a></td>
+                    <td>관리자</td>
+                    <td>2020-12-21</td>
+                    <td>2076</td>
+                  </tr>
+                  <tr>
+                    <td>80</td>
+                    <td>
+                      <a href="#"> 자료입니다.</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2020-12-16</td>
+                    <td>1906</td>
+                  </tr>
+                  <tr>
+                    <td>79</td>
+                    <td>
+                      <a href="#">자료입니다.</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>2020-12-08</td>
+                    <td>1959</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="pagination">
+                <button>이전</button>
+                <span>1 2 </span>
+                <button>다음</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    </div>
+  </body>
+</html>

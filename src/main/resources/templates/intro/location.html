@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout}">
+<head layout:fragment="config">
+  <title>상지국제특허</title>
+   <link rel="stylesheet" href="/css/intro.css"/>
+  <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=50ea19025f6b8c6bf050bc23ce887da5"
+  ></script>
+  <script src="/js/intro.js"></script>
+</head>
+
+  <body>
+    <div id="wrap">
+      <main id="sub_container" layout:fragment="content">
+        <section class="page_top">
+          <div class="main_title">
+            <h1>사무소 소개</h1>
+            <p>Home > 사무소 소개 > 찾아오시는 길</p>
+          </div>
+        </section>
+        <section class="page_bottom">
+          <div class="sub_title">
+            <h2>찾아오시는 길</h2>
+            <h3>
+              <span>상지국제특허법률사무소</span>를 찾아오시는 길을 안내합니다.
+            </h3>
+          </div>
+          <div class="sub_section">
+            <h2 class="blind">서브</h2>
+            <div class="inner">
+              <div class="loca_info1">
+                <a href="#" class="wrap">
+                  <div class="img_box">
+                    <img src="/images/map.svg" />
+                  </div>
+                  <div class="text_box">
+                    <h2>사무소 위치</h2>
+                    <p>
+                      대전시 서구 둔산중로 138<br />
+                      주은오피스텔 1010호
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div class="loca_info2">
+                <a href="#" class="wrap">
+                  <div class="img_box"><img src="/images/phone.svg" /></div>
+                  <div class="text_box">
+                    <h2>대표번호</h2>
+                    <p>
+                      Tel. 1588-1588<br />
+                      Tel. 042-333-3333<br />
+                      Fax. 042-444-4444
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div class="loca_info3">
+                <a href="#" class="wrap">
+                  <div class="img_box"><img src="/images/email.svg" /></div>
+                  <div class="text_box">
+                    <h2>이메일</h2>
+                    <p>sangji@sangji.com</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div id="map" class="location"></div>
+            <p id="result"></p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

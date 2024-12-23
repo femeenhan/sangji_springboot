@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout}">
+<head layout:fragment="config">
+  <title>상지국제특허</title>
+  <link rel="stylesheet" href="/css/procedure.css"/>
+</head>
+  <body>
+    <div id="wrap">
+      <main id="sub_container">
+        <section class="page_top">
+          <div class="main_title">
+            <h1>출원절차</h1>
+            <p>Home > 출원절차 > 필요(준비)서류</p>
+          </div>
+        </section>
+        <section class="page_bottom">
+          <div class="sub_title">
+            <h2>필요(준비)서류</h2>
+          </div>
+          <div class="sub_section">
+            <h2 class="blind">서브</h2>
+            <div class="inner">
+              <div class="tab_body active">
+                <div class="body_title">
+                  <img src="/images/common/check_box.svg" />
+                  <h2>최초 특허 출원시 필요서류</h2>
+                  <p>
+                    * 상기 준비된 서류를 당소 우편으로 회신하여 특허청에
+                    접수하는 방식입니다.
+                  </p>
+                </div>
+              </div>
+              <table class="top table table-bordered table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col" style="width: 5%">No</th>
+                    <th scope="col" style="width: 85%">필요(준비)서류</th>
+                    <th scope="col" style="width: 10%">다운로드</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr scope="row">
+                    <td>1</td>
+                    <td>
+                      출원인 코드신청 ( 본 특허의 권리자를 정하여 기재
+                      바랍니다.)
+                    </td>
+                    <td>
+                      <div class="btn_download">
+                        <button>개인</button>
+                        <button>법인</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr scope="row">
+                    <td>2</td>
+                    <td>
+                      발명자 인적사항 ( 본 특허의 발명자를 정하여 기재
+                      바랍니다.)
+                    </td>
+                    <td>
+                      <div class="btn_download">
+                        <button>다운로드</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr scope="row">
+                    <td>3</td>
+                    <td>
+                      포괄위임장 ( 상기 출원인=권리자 의 인감을 하단부에 날인
+                      바랍니다.)
+                    </td>
+                    <td>
+                      <div class="btn_download">
+                        <button>다운로드</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr scope="row">
+                    <td>4</td>
+                    <td>
+                      중소기업 증명서류 ( 첨부파일에 해당되는 서류 중 하나만
+                      준비 바랍니다.)<br />
+                      * 참고로 상기 서류 제출 시 관납료(특허청 수수료)가 70%
+                      감면 됩니다. 중.소기업만 해당되며, 개인으로 출원할 시
+                      기본적으로 70% 감면 적용됨/ 상표는 감면 해당없음.
+                    </td>
+                    <td>
+                      <div class="btn_download">
+                        <button>다운로드</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr scope="row">
+                    <td>5</td>
+                    <td>
+                      사업자등록증(세금계산서 받을 이메일 주소) 또는 현금영수증
+                      받으실 핸드폰 번호
+                    </td>
+                    <td>
+                      <div class="btn_download">
+                        <button>다운로드</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="tab_body active">
+                <div class="body_title">
+                  <img src="/images/common/check_box.svg" />
+                  <h2>특허고객번호(출원인코드) 부여 신청</h2>
+                </div>
+                <table class="bottom table table-bordered">
+                  <tr>
+                    <th>신청방법</th>
+                    <td>인터넷, 방문. 우편</td>
+                    <th>처리기간</th>
+                    <td>총1일</td>
+                    <th>수수료</th>
+                    <td>수수료없음</td>
+                  </tr>
+                  <tr>
+                    <th>신청서</th>
+                    <td>없음</td>
+                    <th>구비서류</th>
+                    <td>있음(하단 참조)</td>
+                    <th>신청자 자격</th>
+                    <td>본인 또는 대리인(온라인은 대리인 신청 불가)</td>
+                  </tr>
+                </table>
+                <p>
+                  이 민원은 특허고객번호는 주민등록번호와 같이 출원인을 나타내는
+                  고유한 번호로서 출원을 하기 위해서는 이 특허고객번호를 반드시
+                  출원서에 기재해야 하며 이제까지 한번이라도 우리나라 특허청에
+                  출원한 적이 있는 사람은 특허고객번호를 가지고 있습니다.
+                  처음으로 출원하시는 사람이 특허고객번호를 부여 받기 위해
+                  신청하는 민원사무입니다.
+                </p>
+              </div>
+              <div class="test_img">
+                <img src="/images/capture_img.png" />
+              </div>
+              <div class="tab_body active">
+                <div class="body_title">
+                  <img src="/images/common/check_box.svg" />
+                  <h2>표괄위임장</h2>
+                </div>
+                <p>
+                  포괄위임장은 작성자가 임의로 형식에 따라 위임의 뜻이
+                  드러나도록 구성하면 되지만 편의를 위해 기존의 양식을 이용하는
+                  것이 보편적이며 위임 사실을 분명하게 하여 분쟁을 미연에
+                  방지하도록 해야합니다. 포괄위임장을 작성하여 대리인으로 하여금
+                  어떠한 업무를 처리하게 하였을 때에는 처리 결과에 대한 것이
+                  위임자에게 돌아오게 되므로 위임하는 내용을 명확히 기술하고
+                  신중하게 작성해야 합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
