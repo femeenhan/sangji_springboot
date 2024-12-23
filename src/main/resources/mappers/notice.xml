@@ -3,6 +3,17 @@
 
 <mapper namespace="com.project.sangji.mapper.NoticeMapper">
     <select id="selectAll" resultType="NoticeDTO">
-        select * from Notice
+        SELECT N.NO,
+               N.WRITER,
+               N.TITLE,
+               N.CONTENT,
+               DATE(N.REGDATE) AS REGDATE,
+               N.VISITCOUNT,
+               NF.OFILE,
+               NF.NFILE
+        FROM NOTICE N
+        LEFT OUTER JOIN NOTICE_FILE NF
+            ON N.NO = NF.NOTICENO
+        WHERE 1=1
     </select>
 </mapper>

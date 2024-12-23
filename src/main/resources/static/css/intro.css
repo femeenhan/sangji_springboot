@@ -1,6 +1,6 @@
 :root {
   --point-color1: #232f3e;
-  --point-color2: #cfa619;
+  --point-color2: rgba(207, 166, 25, 0.5);
   --gray-400: #d6e7d0;
   --gray-500: #003628;
   --gray-600: #000;
@@ -62,6 +62,7 @@
   padding: 60px 0 50px 0;
   max-width: 1440px;
   margin: 0 auto;
+  display: block;
 }
 
 .page_bottom .sub_title h2 {
@@ -80,17 +81,16 @@
   margin: 0 auto;
   width: 50px;
   height: 50px;
-  background: url(/images/quote.png) no-repeat center / cover;
+  background: url(../images/quote.png) no-repeat center / cover;
 }
 
 .page_bottom .sub_title h3 {
-  display: flex;
-  justify-content: center;
   font-size: 22px;
   font-weight: 700;
   padding: 30px 0;
   width: 50%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .page_bottom .sub_title p {
@@ -331,75 +331,75 @@
 }
 
 .sub_section .image_content .o1 {
-  background: url(/images/office/01.jpg) no-repeat center / cover;
+  background: url(../images/office/01.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o2 {
-  background: url(/images/office/02.jpg) no-repeat center / cover;
+  background: url(../images/office/02.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o3 {
-  background: url(/images/office/03.jpg) no-repeat center / cover;
+  background: url(../images/office/03.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o4 {
-  background: url(/images/office/04.jpg) no-repeat center / cover;
+  background: url(../images/office/04.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o5 {
-  background: url(/images/office/05.jpg) no-repeat center / cover;
+  background: url(../images/office/05.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o6 {
-  background: url(/images/office/06.jpg) no-repeat center / cover;
+  background: url(../images/office/06.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o7 {
-  background: url(/images/office/07.jpg) no-repeat center / cover;
+  background: url(../images/office/07.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o8 {
-  background: url(/images/office/08.jpg) no-repeat center / cover;
+  background: url(../images/office/08.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o9 {
-  background: url(/images/office/09.jpg) no-repeat center / cover;
+  background: url(../images/office/09.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o10 {
-  background: url(/images/office/10.jpg) no-repeat center / cover;
+  background: url(../images/office/10.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o11 {
-  background: url(/images/office/11.jpg) no-repeat center / cover;
+  background: url(../images/office/11.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o12 {
-  background: url(/images/office/12.jpg) no-repeat center / cover;
+  background: url(../images/office/12.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o13 {
-  background: url(/images/office/13.jpg) no-repeat center / cover;
+  background: url(../images/office/13.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o14 {
-  background: url(/images/office/14.jpg) no-repeat center / cover;
+  background: url(../images/office/14.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o15 {
-  background: url(/images/office/15.jpg) no-repeat center / cover;
+  background: url(../images/office/15.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o16 {
-  background: url(/images/office/16.jpg) no-repeat center / cover;
+  background: url(../images/office/16.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o17 {
-  background: url(/images/office/17.jpg) no-repeat center / cover;
+  background: url(../images/office/17.jpg) no-repeat center / cover;
 }
 
 .sub_section .image_content .o18 {
-  background: url(/images/office/18.jpg) no-repeat center / cover;
+  background: url(../images/office/18.jpg) no-repeat center / cover;
 }
 
 .page_bottom .sub_section .image_content img {
@@ -432,7 +432,7 @@
   font-weight: 700;
   padding-bottom: 30px;
   position: relative;
-  letter-spacing: 0.7;
+  letter-spacing: 0.7px;
 }
 
 .page_bottom .sub_section .text_content h2::after {
@@ -505,7 +505,7 @@
 .sub_section .inner .text_box {
   display: block;
   width: 100%;
-  padding: 0px;
+  padding: 0;
   margin: 0 auto;
 }
 
@@ -545,22 +545,22 @@
 }
 
 .sub_section .inner > div::before {
-  height: 0%;
+  height: 0;
   width: 2px;
 }
 
 .sub_section .inner > div::after {
-  width: 0%;
+  width: 0;
   height: 2px;
 }
 
 .sub_section .inner .wrap::before {
-  height: 0%;
+  height: 0;
   width: 2px;
 }
 
 .sub_section .inner .wrap::after {
-  width: 0%;
+  width: 0;
   height: 2px;
 }
 

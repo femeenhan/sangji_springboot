@@ -14,4 +14,6 @@ public class NoticeDTO {
     private String content;
     private String regdate;
     private int visitcount;
+    private String ofile;
+    private String nfile;
 }

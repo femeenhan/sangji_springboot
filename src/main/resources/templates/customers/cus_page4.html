@@ -7,7 +7,6 @@
   <title>상지국제특허</title>
   <link rel="stylesheet" href="/css/customers.css"/>
   <script src="/js/customers.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
 </head>
   <body>
     <div id="wrap">
@@ -33,7 +32,7 @@
                   <img src="/images/common/check_box.svg" />
                   <h2>작성자 정보</h2>
                 </div>
-                <form id="user_request">
+                <form id="user_info" class="user_request">
                   <div class="input_wrap">
                     <div class="title">
                       <h3>작성자</h3>
@@ -70,7 +69,6 @@
                         placeholder="이메일을 입력하세요"
                         required
                       />
-                      <p></p>
                       <input
                         type="text"
                         name="email"
@@ -99,7 +97,7 @@
                   <img src="/images/common/check_box.svg" />
                   <h2>문의 내용</h2>
                 </div>
-                <form id="user_request">
+                <form id="user_question" class="user_request">
                   <div class="input_wrap">
                     <div class="title">
                       <h3>제목</h3>
@@ -118,11 +116,11 @@
                       <h3>문의내용</h3>
                     </div>
                     <div class="input_request">
-                      <textarea
-                        class="editor"
-                        placeholder="문의하실 내용을 입력하세요"
-                        required
-                      />
+                        <textarea
+                          class="editor"
+                          placeholder="문의하실 내용을 입력하세요"
+                          required
+                        ></textarea>
                     </div>
                   </div>
                   <div class="input_wrap">
@@ -141,29 +139,33 @@
                   <h2>개인정보 수집 및 동의</h2>
                 </div>
                 <p>
-                  1. 수집하는 개인정보 내용 - 사업 및 제품관련 상담을 위해
-                  아래와 같은 개인정보를 수집하고 있습니다. - 수집주체 :
-                  새늘국제특허법률사무소 - 수집항목 : 성명, 연락처, 이메일 -
-                  수집방법 : http://www.snpatent.co.kr을 통한 수집 2. 개인정보의
-                  수집 및 이용방법 - 고객상담 처리 3. 개인정보 보유 및 이용 기간
-                  - 상담완료 후 즉시 파기
+                  1. 수집하는 개인정보 내용 <br>&ensp;- 사업 및 제품관련 상담을 위해
+                  아래와 같은 개인정보를 수집하고 있습니다. <br>&ensp;- 수집주체 :
+                  새늘국제특허법률사무소<br>&ensp; - 수집항목 : 성명, 연락처, 이메일<br> &ensp;-
+                  수집방법 : http://www.snpatent.co.kr을 통한 수집<br><br> 2. 개인정보의
+                  수집 및 이용방법<br> &ensp;- 고객상담 처리<br><br> 3. 개인정보 보유 및 이용 기간
+                  <br>&ensp;- 상담완료 후 즉시 파기
                 </p>
-                <label class="radio">
-                  <input type="radio" id="agree1" name="agree1" value="Y" />
-                  <i></i>
-                  동의합니다
-                </label>
-                <label class="radio">
-                  <input
-                    type="radio"
-                    id="agree1_1"
-                    name="agree1"
-                    value="N"
-                    checked
-                  />
-                  <i></i>
-                  동의하지 않습니다
-                </label>
+                <div class="radio_wrap">
+                  <label class="radio">
+                      <input type="radio" id="agree1" name="agree1" value="Y" />
+                      동의합니다 &ensp;&ensp;
+                    </label>
+                  <label class="radio">
+                      <input
+                        type="radio"
+                        id="agree1_1"
+                        name="agree1"
+                        value="N"
+                        checked
+                      />
+                      동의하지 않습니다
+                  </label>
+                </div>
+                </div>
+              <div class="btn_wrap">
+                <button type="submit" class="submit">상담요청</button>
+                <button type="submit" class="cancel">취소하기</button>
               </div>
             </div>
           </div>

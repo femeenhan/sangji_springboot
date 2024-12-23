@@ -68,7 +68,7 @@
   margin: 0 auto;
   width: 50px;
   height: 50px;
-  background: url(/images/quote.png) no-repeat center / cover;
+  background: url(../images/quote.png) no-repeat center / cover;
 }
 
 .page_bottom .sub_title h2 {
@@ -102,6 +102,7 @@
 .sub_section .tab_menu {
   display: flex;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .sub_section .tab_menu dt {
@@ -136,7 +137,7 @@
 
 .sub_section .tab_body.active {
   width: 100%;
-  margin: 30px auto;
+  margin: 0 auto;
   display: block;
 }
 
@@ -172,7 +173,7 @@
 .tab_body .body_content .left h3 {
   font-size: 28px;
   margin-bottom: 10px;
-  color: rgba(35, 47, 62, 0.6);
+  color: var(--point-color2);
 }
 
 .tab_body .body_content .left h2 {
@@ -199,27 +200,98 @@
   font-weight: 700;
 }
 
-.sub_section table.top {
-  margin-top: -60px;
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 0 auto;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: rgba(35, 47, 62, 0.9);
+  color: #fff;
+  text-align: center;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid rgba(35, 47, 62, 0.3);
+  border-bottom: 1px solid rgba(35, 47, 62, 0.3);
+}
+td:first-child {
+  border-left: 1px solid rgba(35, 47, 62, 0.3);
 }
 
-.sub_section table th,
-tr > td:first-child,
-tr > td:last-child {
-  text-align: center;
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+table tr td:nth-child(2) a {
+  position: relative;
+}
+
+table tr td:nth-child(2) a::after {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -20px;
+  width: 8px;
+  height: 13px;
+  background: url(../images/icon-clip.png) no-repeat center / cover;
+}
+
+.btn_download {
+  display: flex;
+  justify-content: center;
+  gap: 0 10px;
 }
 
 .btn_download button {
   border: none;
   border-radius: 3px;
-  background: #003628;
   color: #fff;
   padding: 3px 5px;
+  background: rgba(35, 47, 62, 0.9);
+
 }
 
-.sub_section table.bottom th {
-  width: 150px;
-  background: rgba(35, 47, 62, 0.3);
+.body_table {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px 20px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.body_table dt {
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.body_table dd {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
 }
 
 .test_img {

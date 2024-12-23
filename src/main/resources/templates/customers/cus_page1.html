@@ -7,7 +7,6 @@
   <title>상지국제특허</title>
   <link rel="stylesheet" href="/css/customers.css"/>
   <script src="/js/customers.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
 </head>
   <body>
     <div id="wrap">
@@ -41,7 +40,7 @@
                 />
                 <button>검색</button>
               </div>
-              <table class="table table-hover" style="width: 80%">
+              <table>
                 <thead>
                   <tr>
                     <th style="width: 10%">번호</th>
@@ -52,36 +51,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>[공지]</td>
-                    <td><a href="#">“책상” 디자인등록 무효소송 승소</a></td>
-                    <td>관리자</td>
-                    <td>2020-12-21</td>
-                    <td>2076</td>
-                  </tr>
-                  <tr>
+                  <tr th:each="dto : ${list}">
                     <td>[공지]</td>
                     <td>
-                      <a href="#"
-                        >"토양생물의 대단위 생육 시설"의 거절결정 심결취소소송
-                        승소</a
-                      >
+                      <a href="/customers/page_view" th:text="${dto.title}"></a>
+                      <span th:if="${dto.nfile != null}"></span>
                     </td>
-                    <td>관리자</td>
-                    <td>2020-12-16</td>
-                    <td>1906</td>
+                    <td th:text="${dto.writer}"></td>
+                    <td th:text="${dto.regdate}"></td>
+                    <td th:text="${dto.visitcount}"></td>
                   </tr>
-                  <tr>
-                    <td>[공지]</td>
-                    <td>
-                      <a href="#"
-                        >특허법원에서 “작업용 방석” 디자인등록 무효소송 승소</a
-                      >
-                    </td>
-                    <td>관리자</td>
-                    <td>2020-12-08</td>
-                    <td>1959</td>
-                  </tr>
+
                 </tbody>
               </table>
               <div class="pagination">

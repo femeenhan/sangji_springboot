@@ -6,10 +6,11 @@
 <head layout:fragment="config">
   <title>상지국제특허</title>
   <link rel="stylesheet" href="/css/procedure.css"/>
+  <script src="/js/procedure.js"></script>
 </head>
   <body>
     <div id="wrap">
-      <main id="sub_container">
+      <main id="sub_container" layout:fragment="content">
         <section class="page_top">
           <div class="main_title">
             <h1>출원절차</h1>
@@ -33,16 +34,16 @@
                   </p>
                 </div>
               </div>
-              <table class="top table table-bordered table-hover">
-                <thead class="table-dark">
+              <table>
+                <thead>
                   <tr>
-                    <th scope="col" style="width: 5%">No</th>
-                    <th scope="col" style="width: 85%">필요(준비)서류</th>
-                    <th scope="col" style="width: 10%">다운로드</th>
+                    <th style="width: 5%">No</th>
+                    <th style="width: 85%">필요(준비)서류</th>
+                    <th style="width: 10%">다운로드</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr scope="row">
+                  <tr>
                     <td>1</td>
                     <td>
                       출원인 코드신청 ( 본 특허의 권리자를 정하여 기재
@@ -55,7 +56,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr scope="row">
+                  <tr>
                     <td>2</td>
                     <td>
                       발명자 인적사항 ( 본 특허의 발명자를 정하여 기재
@@ -67,7 +68,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr scope="row">
+                  <tr>
                     <td>3</td>
                     <td>
                       포괄위임장 ( 상기 출원인=권리자 의 인감을 하단부에 날인
@@ -79,7 +80,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr scope="row">
+                  <tr>
                     <td>4</td>
                     <td>
                       중소기업 증명서류 ( 첨부파일에 해당되는 서류 중 하나만
@@ -94,7 +95,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr scope="row">
+                  <tr>
                     <td>5</td>
                     <td>
                       사업자등록증(세금계산서 받을 이메일 주소) 또는 현금영수증
@@ -113,24 +114,27 @@
                   <img src="/images/common/check_box.svg" />
                   <h2>특허고객번호(출원인코드) 부여 신청</h2>
                 </div>
-                <table class="bottom table table-bordered">
-                  <tr>
-                    <th>신청방법</th>
-                    <td>인터넷, 방문. 우편</td>
-                    <th>처리기간</th>
-                    <td>총1일</td>
-                    <th>수수료</th>
-                    <td>수수료없음</td>
-                  </tr>
-                  <tr>
-                    <th>신청서</th>
-                    <td>없음</td>
-                    <th>구비서류</th>
-                    <td>있음(하단 참조)</td>
-                    <th>신청자 자격</th>
-                    <td>본인 또는 대리인(온라인은 대리인 신청 불가)</td>
-                  </tr>
-                </table>
+                <div class="body_table">
+                  <dl>
+                    <dt>신청방법</dt>
+                    <dd>인터넷, 방문. 우편</dd>
+
+                    <dt>처리기간</dt>
+                    <dd>총 1일</dd>
+
+                    <dt>수수료</dt>
+                    <dd>수수료 없음</dd>
+
+                    <dt>신청서</dt>
+                    <dd>없음</dd>
+
+                    <dt>구비서류</dt>
+                    <dd>있음 (하단 참조)</dd>
+
+                    <dt>신청자 자격</dt>
+                    <dd>본인 또는 대리인(온라인은 대리인 신청 불가)</dd>
+                  </dl>
+                </div>
                 <p>
                   이 민원은 특허고객번호는 주민등록번호와 같이 출원인을 나타내는
                   고유한 번호로서 출원을 하기 위해서는 이 특허고객번호를 반드시
