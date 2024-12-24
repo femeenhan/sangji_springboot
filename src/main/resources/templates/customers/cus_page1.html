@@ -2,7 +2,7 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout}">
+      layout:decorate="~{layout}">
 <head layout:fragment="config">
   <title>상지국제특허</title>
   <link rel="stylesheet" href="/css/customers.css"/>
@@ -54,8 +54,8 @@
                   <tr th:each="dto : ${list}">
                     <td>[공지]</td>
                     <td>
-                      <a href="/customers/page_view" th:text="${dto.title}"></a>
-                      <span th:if="${dto.nfile != null}"></span>
+                      <a th:href="@{'/customers/page_view/' + ${dto.no}}" th:text="${dto.title}"></a>
+                      <span th:if="${dto.nfile != null}" class="icon_clip"></span>
                     </td>
                     <td th:text="${dto.writer}"></td>
                     <td th:text="${dto.regdate}"></td>
@@ -64,6 +64,9 @@
 
                 </tbody>
               </table>
+              <div class="btn_wrap">
+                <button type="submit" class="write" onclick="location.href='/customers/write'">글쓰기</button>
+              </div>
               <div class="pagination">
                 <button>이전</button>
                 <span>1</span>

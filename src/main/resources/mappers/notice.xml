@@ -16,4 +16,19 @@
             ON N.NO = NF.NOTICENO
         WHERE 1=1
     </select>
+    <select id="selectOne" parameterType="int" resultType="NoticeDTO">
+        SELECT N.NO,
+               N.WRITER,
+               N.TITLE,
+               N.CONTENT,
+            DATE(N.REGDATE) AS REGDATE,
+            N.VISITCOUNT,
+            NF.OFILE,
+            NF.NFILE
+        FROM NOTICE N
+            LEFT OUTER JOIN NOTICE_FILE NF
+        ON N.NO = NF.NOTICENO
+        WHERE 1=1
+        AND N.NO = #{no}
+    </select>
 </mapper>

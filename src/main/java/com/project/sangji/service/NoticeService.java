@@ -15,4 +15,8 @@ public class NoticeService {
     public List<NoticeDTO> selectAll(){
         return noticeMapper.selectAll();
     }
+
+    public NoticeDTO selectOne(int no){
+        return noticeMapper.selectOne(no);
+    }
 }

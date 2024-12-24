@@ -5,17 +5,21 @@
 
 <head>
   <title>상지국제특허</title>
-  <th:block th:replace="common/config :: config" />
+<!--(중요!!)  ~{common/...} 은 절대경로를 의미. common/... 은 상대경로를 의미
+  상대경로로 표기해두면 localhost로 빌드시 문제없는데 배포시 문제가 되므로
+   ~{common/...}으로 작성
+-->
+  <th:block th:replace="~{common/config :: config}" />
 </head>
 <body>
   <div id="skip_navi">
     <a href="#container">본문바로가기</a>
   </div>
 
-  <header th:replace="common/header :: header"></header>
+  <header th:replace="~{common/header :: header}"></header>
 
   <th:block layout:fragment="content"/>
 
-  <footer th:replace="common/footer :: footer"></footer>
+  <footer th:replace="~{common/footer :: footer}"></footer>
 </body>
 </html>

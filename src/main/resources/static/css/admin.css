@@ -1,0 +1,72 @@
+:root {
+  --point-color1: #232f3e;
+  --point-color2: #cfa619;
+  --gray-400: #d6e7d0;
+  --gray-500: #003628;
+  --gray-600: #000;
+}
+
+.inner .part_wrap {
+  margin-bottom: 50px;
+}
+
+.input_wrap {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid rgba(35, 47, 62, 0.9);
+  border-bottom: 1px solid rgba(35, 47, 62, 0.3);
+}
+
+.input_wrap {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 5px 0;
+  margin: 10px 0;
+  min-height: 50px;
+}
+
+.input_wrap .title {
+  display: flex;
+  width: 20%;
+  height: 100%;
+}
+
+.input_wrap .title h3 {
+  display: block;
+  justify-content: start;
+  margin: auto 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.input_wrap .input_request {
+  display: flex;
+  width: 80%;
+}
+
+.input_wrap .input_request input {
+  height: 40px;
+  width: 90%;
+  border: 1px solid rgba(35, 47, 62, 0.3);
+}
+
+.input_wrap .input_request textarea {
+  height: 300px;
+  width: 90%;
+  border: 1px solid rgba(35, 47, 62, 0.3);
+}
+
+.input_wrap input:focus {
+  border-color: #232f3e;
+  outline: none;
+  box-shadow: 0 0 3px rgba(35, 47, 62, 0.5);
+}
+
+.input_wrap .input_request input {
+  height: 40px;
+  width: 90%;
+  border: 1px solid rgba(35, 47, 62, 0.3);
+}
