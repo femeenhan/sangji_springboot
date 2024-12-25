@@ -173,19 +173,28 @@ select:focus {
 table {
   border-collapse: separate;
   border-spacing: 0;
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
   padding-top: 30px;
 }
+
 th,
 td {
   padding: 6px 15px;
+  text-align: center;
 }
+
+td:nth-child(2) {
+  padding: 6px 15px;
+  text-align: start;
+}
+
 th {
   background: rgba(35, 47, 62, 0.9);
   color: #fff;
   text-align: center;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 6px;
 }

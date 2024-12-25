@@ -66,7 +66,7 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   // 헤더 언어 클릭시 변경
-  const langChoice = document.querySelector(".btn_wrap .lang_wrap .lang_btn");
+  const langChoice = document.querySelector(".header_btn_wrap .lang_wrap .lang_btn");
   if (langChoice) {
     langChoice.addEventListener("click", function () {
       langChoice.innerText = langChoice.innerText === "ENG" ? "한국어" : "ENG";
