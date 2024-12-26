@@ -1,10 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head layout:fragment="config">
+    <title>join</title>
+    <link rel="stylesheet" href="/css/member.css"/>
+    <script src="/js/member.js"></script>
+    <script src="/js/api.js" async defer></script>
 </head>
 <body>
+<div id="wrap">
+    <main id="sub_container" layout:fragment="content">
+        <div class="join_main">
+            <form id="join">
+                <div class="join_input">
+                    <div class="input_wrap">
+                        <h6>아이디</h6>
+                        <div class="input">
+                            <input type="text" id="input_text_id" name="id" placeholder="아이디" required>
+                            <input id="id_check" type="button" value="중복확인">
+                            <p id="id_text">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</p>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>비밀번호</h6>
+                        <div class="input">
+                            <input type="password" id="input_pw" name="pw" placeholder="비밀번호" required>
+                            <p>영문, 숫자, 특수문자를 포함하여 8자 이상으로 작성해주세요.</p>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>비밀번호 확인</h6>
+                        <div class="input">
+                            <input type="password" id="input_pw_ch" placeholder="비밀번호확인" required>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>이름</h6>
+                        <div class="input">
+                            <input type="text" id="input_name" name="name" placeholder="이름" required >
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>E-Mail</h6>
+                        <div class="input">
+                            <input type="text" id="input_email" name="email" placeholder="E-Mail" required >
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6 class="none">전화번호</h6>
+                        <div class="input">
+                            <input type="text" name="tel" placeholder="전화번호" >
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>휴대폰번호</h6>
+                        <div class="input">
+                            <input type="text" id="input_phone" name="phone" placeholder="휴대폰번호" required >
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>생년월일</h6>
+                        <div class="input_select" >
+                            <input type="date" class="blind" name="birth" id="input_birth" >
+                            <div class="select_wrap">
+                                <div class="select" id="year_select" ></div>
+                                <ul id="join_year"></ul>
+                            </div>
+                            <span>년</span>
+                            <div class="select_wrap">
+                                <div class="select" id="month_select" ></div>
+                                <ul id="join_month"></ul>
+                            </div>
+                            <span>월</span>
+                            <div class="select_wrap">
+                                <div class="select" id="day_select" ></div>
+                                <ul id="join_day"></ul>
+                            </div>
+                            <span>일</span>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>주소</h6>
+                        <div class="input">
+                            <input type="text" id="zoneCode" name="zipcode" placeholder="우편번호" required >
+                            <input type="button" id="click_post" value="주소 검색"><br>
+                            <div>
+                                <input class="margin20" type="text" id="address" name="addr1" placeholder="기본주소" required >
+                                <input class="margin20 address" type="text" name="addr2" placeholder="상세주소" required >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>메일 수신</h6>
+                        <div class="input radios">
+                            <input type="hidden" id="radio_val" name="mailyn" >
+                            <input id="radio_yes" type="radio" >
+                            <label for="radio_yes">예</label>
+                            <input id="radio_no" type="radio" >
+                            <label for="radio_no">아니오</label>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <h6>자동등록방지</h6>
+                        <div class="input">
+                            <div>
+                                <div class="g-recaptcha" data-sitekey="6LdYq5gqAAAAABUBYvZ0VgWC91CtG2myxpbMm-Ly"></div>
+                                <span>체크박스를 클릭해주세요.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="join_btn_wrap">
+                    <a class="silver" href="/login">취소</a>
+                    <input type="submit" class="gold" >
+                </div>
+            </form>
+        </div>
 
+    </main>
+
+</div>
 </body>
 </html>
