@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    @GetMapping("/login")
-    public void login() {
+    @GetMapping("/login_main")
+    public void loginMain() {
     }
+
+    @GetMapping("/login_find_id")
+    public void loginFindId() {
+    }
+
+    @GetMapping("/login_find_pw")
+    public void loginFindPw() {
+    }
+
     @GetMapping("/join")
     public void join() { }
 }

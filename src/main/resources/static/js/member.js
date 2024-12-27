@@ -1,4 +1,58 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', function (message) {
+    const loginBtnEl = document.querySelector('.header_btn_wrap .login');
 
+    document.querySelector('input[name=id]')?.focus();
+    document.querySelector('input[name=person_name]')?.focus();
+
+    // if (loginBtnEl) {
+    //     loginBtnEl.addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //
+    //     })
+    // }
+    // loginBtnEl.click();
+
+    // 로그인하기
+    const loginEl = document.getElementById('memberLoginBtn');
+    if (loginEl) {
+        loginEl.addEventListener('click', function () {
+            const idEl = document.querySelector('.login_info input[name=id]');
+            const pwEl = document.querySelector('.login_info input[name=pass]');
+            const id = idEl.value.trim();
+            const pw = pwEl.value.trim();
+
+            if (id.length <= 0) {
+                alert('아이디를 입력하세요');
+                idEl.focus();
+            } else if (pw.length <= 0) {
+                alert('비밀번호를 입력하세요');
+                pwEl.focus();
+            } else {
+                if (id === 'admin' && pw === '1') {
+                    location.href = '/';
+                } else {
+                    alert('가입정보가 없습니다.');
+                    idEl.focus();
+                }
+            }
+        })
+    }
+
+    // 아이디, 비밀번호 엔터키 이벤트 (로그인)
+    const idEnter = document.querySelector('.login_info input[name=id]');
+    const passEnter = document.querySelector('.login_info input[name=pass]');
+
+    if(idEnter) {
+        idEnter.addEventListener('keyup', function (e){
+            if(e.key === 'Enter') document.getElementById('memberLoginBtn').click();
+        })
+    }
+    if(passEnter) {
+        passEnter.addEventListener('keyup', function (e){
+            if(e.key === 'Enter') document.getElementById('memberLoginBtn').click();
+
+        })
+    }
 
 });
+

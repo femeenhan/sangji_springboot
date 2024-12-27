@@ -61,20 +61,26 @@
   border: 1px solid rgba(35, 47, 62, 0.5);
 }
 
-.login_area .login_info input.id {
-  background: url("../images/common/person.svg") no-repeat 5px center;
+input:focus {
+  border-color: #232f3e;
+  outline: none;
+  box-shadow: 0 0 5px rgba(35, 47, 62, 0.7);
+}
+
+.login_area .login_info input[name=id], input[name=person_name] {
+  background: url("../images/common/person.svg") no-repeat 8px center;
   background-size: 28px;
   padding-left: 50px;
 }
 
-.login_area .login_info input.pass {
-  background: url("../images/common/lock.svg") no-repeat 5px center;
+.login_area .login_info input[name=pass] {
+  background: url("../images/common/lock.svg") no-repeat 8px center;
   background-size: 28px;
   padding-left: 50px;
 }
 
-.login_area .login_info input.email {
-  background: url("../images/common/email.svg") no-repeat 5px center;
+.login_area .login_info input[name=email] {
+  background: url("../images/common/email.svg") no-repeat 8px center;
   background-size: 28px;
   padding-left: 50px;
 }
