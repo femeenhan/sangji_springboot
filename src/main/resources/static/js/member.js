@@ -42,17 +42,42 @@ window.addEventListener('DOMContentLoaded', function (message) {
     const idEnter = document.querySelector('.login_info input[name=id]');
     const passEnter = document.querySelector('.login_info input[name=pass]');
 
-    if(idEnter) {
-        idEnter.addEventListener('keyup', function (e){
-            if(e.key === 'Enter') document.getElementById('memberLoginBtn').click();
+    if (idEnter) {
+        idEnter.addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') document.getElementById('memberLoginBtn').click();
         })
     }
-    if(passEnter) {
-        passEnter.addEventListener('keyup', function (e){
-            if(e.key === 'Enter') document.getElementById('memberLoginBtn').click();
+    if (passEnter) {
+        passEnter.addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') document.getElementById('memberLoginBtn').click();
 
         })
     }
 
+    // 아이디 찾기 실행
+    const nameEl = document.querySelector('.login_find_id .login_info input[name=person_name]');
+    const emailEl = document.querySelector('.login_find_id .login_info input[name=email]');
+    const idFindEl = document.getElementById('findIdBtn');
+
+    if (idFindEl) {
+        idFindEl.addEventListener('click', function (e) {
+            const name = nameEl.value.trim();
+            const email = emailEl.value.trim();
+            console.log(nameEl.value);
+            // e.preventDefault();
+            if (name === 'han' && email === 'han') {
+                const foundIdEl = document.querySelector('.login_find_id_ok .found_id strong');
+                if (foundIdEl) {
+                    foundIdEl.innerHTML = 'test';
+                }
+            }
+        })
+    }
+
+    if (idFindEl) {
+        idFindEl.addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') document.getElementById('findIdBtn').click();
+        });
+    }
 });
 
