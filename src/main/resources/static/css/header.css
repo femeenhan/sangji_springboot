@@ -32,8 +32,8 @@
 }
 #header.fixed .lang_wrap .lang_btn {
   background: #f7f7f7;
-  border-color: var(--point-color1);
-  color: var(--point-color1);
+  border-color: #adacac;
+  color: #adacac;
 }
 #header.fixed .lang_wrap .lang_btn::after {
   background: var(--point-color1);
@@ -82,7 +82,7 @@
   display: block;
   line-height: 70px;
   padding: 0 30px;
-  color: #fff;
+  color: #adacac;
   font-size: 16px;
   font-weight: 700;
 }
@@ -168,14 +168,20 @@
 
 #header .header_btn_wrap .lang_wrap .lang_btn {
   width: 100%;
-  height: 34px;
-  border: 1px solid #415751;
-  color: #415751;
+  height: 45%;
+  border: 1px solid #adacac;
+  color: #adacac;
   border-radius: 5px;
   background: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   justify-content: center;
+}
+
+#header .header_btn_wrap .lang_wrap .lang_btn:hover {
+  background: rgba(173, 172, 172, 0.5);
+  color: var(--point-color1);
+  border: none;
 }
 
 

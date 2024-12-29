@@ -785,66 +785,66 @@ caption.nohead {
 }
 
 /* 게시물 검색 */
-.board_search {
-  background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-  padding: 56px;
-  gap: 0 10px;
-}
-.board_search .search_wrap {
-  border: 1px solid #ddd;
-  max-width: 600px;
-  width: 100%;
-  display: flex;
-}
-.board_search input[type='search'] {
-  height: 48px;
-  border: none;
-  width: calc(100% - 60px);
-}
-.board_search .search_btn {
-  width: 60px;
-  height: 48px;
-  border: none;
-  background: #fff url(../images/common/icon_search.svg) no-repeat 50% 50%;
-}
+/*.board_search {*/
+/*  background: #f8f8f8;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  padding: 56px;*/
+/*  gap: 0 10px;*/
+/*}*/
+/*.board_search .search_wrap {*/
+/*  border: 1px solid #ddd;*/
+/*  max-width: 600px;*/
+/*  width: 100%;*/
+/*  display: flex;*/
+/*}*/
+/*.board_search input[type='search'] {*/
+/*  height: 48px;*/
+/*  border: none;*/
+/*  width: calc(100% - 60px);*/
+/*}*/
+/*.board_search .search_btn {*/
+/*  width: 60px;*/
+/*  height: 48px;*/
+/*  border: none;*/
+/*  background: #fff url(../images/common/icon_search.svg) no-repeat 50% 50%;*/
+/*}*/
 
-/* board_list */
-.board_list {
-  border-top: 1px solid #000;
-}
-.board_list th {
-  height: 60px;
-  background: #f5f5f5;
-  color: var(--gray-600);
-  font-weight: 400;
-  border-bottom: 1px solid #eee;
-}
-.board_list .col1 {
-  width: 100px;
-}
-.board_list .col3 {
-  width: 160px;
-}
-.board_list td {
-  height: 60px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-.board_list .td_left {
-  text-align: left;
-}
-.board_list td .link {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+/*!* board_list *!*/
+/*.board_list {*/
+/*  border-top: 1px solid #000;*/
+/*}*/
+/*.board_list th {*/
+/*  height: 60px;*/
+/*  background: #f5f5f5;*/
+/*  color: var(--gray-600);*/
+/*  font-weight: 400;*/
+/*  border-bottom: 1px solid #eee;*/
+/*}*/
+/*.board_list .col1 {*/
+/*  width: 100px;*/
+/*}*/
+/*.board_list .col3 {*/
+/*  width: 160px;*/
+/*}*/
+/*.board_list td {*/
+/*  height: 60px;*/
+/*  text-align: center;*/
+/*  border-bottom: 1px solid #eee;*/
+/*}*/
+/*.board_list .td_left {*/
+/*  text-align: left;*/
+/*}*/
+/*.board_list td .link {*/
+/*  display: -webkit-box;*/
+/*  -webkit-line-clamp: 1;*/
+/*  -webkit-box-orient: vertical;*/
+/*  overflow: hidden;*/
+/*}*/
 
-.board_list .file {
-  padding-bottom: 5px;
-}
+/*.board_list .file {*/
+/*  padding-bottom: 5px;*/
+/*}*/
 
 /* pc만 hover효과 */
 @media (min-width: 1201px) {
@@ -854,58 +854,106 @@ caption.nohead {
 }
 
 /* 게시판 페이징 */
-.board_pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-.board_pagination [class*='paging'] {
-  width: 22px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.board_pagination [class*='paging']::after {
-  content: '';
-  width: 14px;
-  height: 14px;
-  background: url(../images/common/sprite_pc.png) no-repeat -397px -310px;
-}
-.board_pagination .prev_paging::after {
-  width: 8px;
-  background-position: -369px -182px;
-}
-.board_pagination .next_paging::after {
-  width: 8px;
-  background-position: -30px -431px;
-}
-.board_pagination .last_paging::after {
-  background-position: -443px -388px;
-}
-.board_pagination .num {
-  height: 40px;
-  width: 40px;
-  line-height: 38px;
+/*.board_pagination {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  margin-top: 20px;*/
+/*}*/
+/*.board_pagination [class*='paging'] {*/
+/*  width: 22px;*/
+/*  height: 40px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+/*.board_pagination [class*='paging']::after {*/
+/*  content: '';*/
+/*  width: 14px;*/
+/*  height: 14px;*/
+/*  background: url(../images/common/sprite_pc.png) no-repeat -397px -310px;*/
+/*}*/
+/*.board_pagination .prev_paging::after {*/
+/*  width: 8px;*/
+/*  background-position: -369px -182px;*/
+/*}*/
+/*.board_pagination .next_paging::after {*/
+/*  width: 8px;*/
+/*  background-position: -30px -431px;*/
+/*}*/
+/*.board_pagination .last_paging::after {*/
+/*  background-position: -443px -388px;*/
+/*}*/
+/*.board_pagination .num {*/
+/*  height: 40px;*/
+/*  width: 40px;*/
+/*  line-height: 38px;*/
+/*  text-align: center;*/
+/*  border: 1px solid #eee;*/
+/*  font-size: 15px;*/
+/*}*/
+/*.board_pagination .num + .num {*/
+/*  margin-left: 10px;*/
+/*}*/
+/*.board_pagination .num.active {*/
+/*  background: var(--point-color1);*/
+/*  border-color: var(--point-color1);*/
+/*  color: #fff;*/
+/*}*/
+/*.board_pagination .prev_paging {*/
+/*  margin-right: 13px;*/
+/*}*/
+/*.board_pagination .next_paging {*/
+/*  margin-left: 13px;*/
+/*}*/
+
+.pagination {
+  margin-top: 95px;
+  padding: 10px 0;
   text-align: center;
-  border: 1px solid #eee;
-  font-size: 15px;
 }
-.board_pagination .num + .num {
-  margin-left: 10px;
+.pagination .page_num {
+  display: inline-block;
+  margin: 0 3px;
+  min-width: 30px;
+  height: 30px;
+  background-color: transparent;
+  font-size: 18px;
+  color: var(--gray-400);
+  font-family: 'EB Garamond', 'Noto Sans KR', 'Noto Serif KR', sans-serif;
+  vertical-align: middle;
+  line-height: 28px;
+  font-weight: 500;
 }
-.board_pagination .num.active {
-  background: var(--point-color1);
-  border-color: var(--point-color1);
-  color: #fff;
+.pagination .page_num.active {
+  position: relative;
+  color: var(--point-color1);
 }
-.board_pagination .prev_paging {
-  margin-right: 13px;
+.pagination .page_num.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin-left: -6px;
+  width: 12px;
+  height: 2px;
+  background-color: var(--point-color1);
 }
-.board_pagination .next_paging {
-  margin-left: 13px;
+.pagination .page_num.page_prev {
+  font-size: 0;
+  background: url(../images/common/bu-paging-first.png) no-repeat center;
 }
+.pagination .page_num.page_next {
+  font-size: 0;
+  background: url(../images/common/bu-paging-last.png) no-repeat center;
+}
+.pagination .page_num.page_prev:hover {
+  background-image: url(../images/common/bu-paging-first-on.png);
+}
+.pagination .page_num.page_next:hover {
+  background-image: url(../images/common/bu-paging-last-on.png);
+}
+
 
 /* 게시물 보기 */
 .board_view .view_tit {

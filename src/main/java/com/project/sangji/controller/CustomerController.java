@@ -1,13 +1,16 @@
 package com.project.sangji.controller;
 
+import com.project.sangji.common.Pagination;
 import com.project.sangji.model.NoticeDTO;
 import com.project.sangji.service.NoticeService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,30 +20,51 @@ import java.util.List;
 class CustomerController {
     private final NoticeService ns;
     List<NoticeDTO> dto;
+    Pagination pg = new Pagination();
 
     @GetMapping("/cus_page1")
-    public void customer1(Model model) {
-        dto = ns.selectAll();
-        System.out.println(dto.toString());
-        model.addAttribute("list", dto);
+    public void customer1(@RequestParam(defaultValue = "1") int pageNum,
+                          HttpServletRequest request,
+                          Model model) {
+        pg.setPageNum(pageNum);
+        int totalCount = ns.totalCount(pg);
+        System.out.println(totalCount);
+        pg.setTotalRecord(totalCount);
+
+        System.out.println(ns.selectAll(pg));
+        model.addAttribute("list", ns.selectAll(pg));
+        model.addAttribute("paging", pg.paging(request));
     }
+
     @GetMapping("/cus_page2")
-    public void customer2(Model model) {
+    public void customer2(@RequestParam(defaultValue = "1") int pageNum,
+                          HttpServletRequest request,
+                          Model model) {
+        pg.setEndPage(pageNum);
+//        pg.setTableName("press_article");
+        int totalCount = ns.totalCount(pg);
+        pg.setTotalRecord(totalCount);
+        model.addAttribute("list", ns.selectAll(pg));
+        model.addAttribute("paging", pg.paging(request));
 
     }
+
     @GetMapping("/cus_page3")
     public void customer3(Model model) {
 
     }
+
     @GetMapping("/cus_page4")
     public void customer4(Model model) {
 
     }
+
     @GetMapping("/page_view/{no}")
     public String pageView(@PathVariable("no") int no, Model model) {
         model.addAttribute("data", ns.selectOne(no));
         return "customers/page_view";
     }
+
     @GetMapping("/write")
     public void write() {
     }
