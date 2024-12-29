@@ -14,19 +14,19 @@ import java.util.Map;
 public class NoticeService {
     private final NoticeMapper noticeMapper;
 
-    public List<NoticeDTO> selectAll(Pagination pg){
+    public List<NoticeDTO> selectAll(Pagination pg) {
         return noticeMapper.selectAll(pg);
     }
 
-    public NoticeDTO selectOne(int no){
+    public NoticeDTO selectOne(int no) {
         return noticeMapper.selectOne(no);
     }
 
-    public Integer totalCount(Pagination pg){
+    public Integer totalCount(Pagination pg) {
         Integer count = noticeMapper.totalCount(pg);
         return count != null ? count : 0;
     }
-
+    
     public void insert(NoticeDTO dto) {
         noticeMapper.insert(dto);
     }

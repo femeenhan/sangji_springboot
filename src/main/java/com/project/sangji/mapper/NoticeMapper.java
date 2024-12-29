@@ -9,10 +9,16 @@ import java.util.Map;
 
 @Mapper
 public interface NoticeMapper {
+
     List<NoticeDTO> selectAll(Pagination pg);
+
     NoticeDTO selectOne(int no);
+
     Integer totalCount(Pagination pg);
+
     void insert(NoticeDTO notice);
+
     void update(NoticeDTO notice);
+
     void delete(int no);
 }

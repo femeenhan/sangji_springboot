@@ -18,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/customers")
 class CustomerController {
+
     private final NoticeService ns;
     List<NoticeDTO> dto;
     Pagination pg = new Pagination();
@@ -67,8 +68,12 @@ class CustomerController {
         return "customers/page_view";
     }
 
-    @GetMapping("/write")
-    public void write() {
+    @GetMapping("/write_notice")
+    public void writeNotice() {
+    }
+
+    @GetMapping("/write_press")
+    public void writePress() {
     }
 
 }
