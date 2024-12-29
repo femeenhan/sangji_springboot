@@ -10,14 +10,13 @@
                CONTENT,
                DATE(REGDATE) AS REGDATE,
                VISITCOUNT
-        FROM notice
-        WHERE 1=1
+        FROM ${tableName}
         order by no desc
         limit #{pageSize} offset #{offset}
     </select>
     <select id="totalCount" parameterType="com.project.sangji.common.Pagination"
             resultType="int">
-        select count(*) from notice
+        select count(*) from ${tableName}
     </select>
 
     <select id="selectOne" parameterType="int" resultType="NoticeDTO">

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head layout:fragment="config">
+  <title>상지국제특허</title>
+  <link rel="stylesheet" href="/css/admin.css"/>
+</head>
+  <body>
+  <div id="wrap">
+    <main id="sub_container" layout:fragment="content">
+      <section class="page_top">
+        <div class="main_title">
+          <h1>공지사항 - 관리자</h1>
+          <p>Home > 관리자 > 공지사항</p>
+        </div>
+      </section>
+      <section class="page_bottom">
+        <div class="sub_title">
+          <h2>공지사항</h2>
+          <h3 class="join_msg">공지사항 작성 페이지입니다.</h3>
+        </div>
+        <div class="sub_section">
+          <h2 class="blind">서브</h2>
+          <div class="inner">
+            <div class="part_wrap">
+              <form id="write">
+                <div class="input_wrap">
+                  <div class="title">
+                    <h3>글제목</h3>
+                  </div>
+                  <div class="input_request">
+                    <input type="text" name="title" placeholder="제목" required
+                    />
+                  </div>
+                </div>
+                <div class="input_wrap">
+                  <div class="title">
+                    <h3>내용</h3>
+                  </div>
+                  <div class="input_request">
+                    <textarea name="content" id="noticeEditor" data-editor></textarea>
+                  </div>
+                </div>
+                <div class="input_wrap">
+                  <div class="title">
+                    <h3>파일첨부</h3>
+                  </div>
+                  <div class="input_request">
+                    <input type="file" name="file" />
+                  </div>
+                </div>
+              </form>
+              <div class="btn_wrap">
+                <button class="save" onclick="location.href='/member/login_main'">저장</button>
+                <button class="cancel" type="submit"
+                        onclick="location.href='/customers/cus_page1'">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>

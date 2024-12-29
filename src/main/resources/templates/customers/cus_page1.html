@@ -64,12 +64,13 @@
 
                 </tbody>
               </table>
+              <th:block th:utext="${paging}" />
               <div class="btn_wrap">
-                <button type="submit" class="write admin" onclick="location.href='/customers/write'" data-admin="Y">
-                  공지작성
+                <button type="submit" class="write admin"
+                        onclick="location.href='/customers/write_notice'">
+                  공지작성하기
                 </button>
               </div>
-              <th:block th:utext="${paging}" />
             </div>
           </div>
         </section>

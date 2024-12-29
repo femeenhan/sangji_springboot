@@ -52,11 +52,11 @@
                 </thead>
                 <tbody>
                   <tr th:each="dto: ${list}">
-                    <td>81</td>
-                    <td><a href="#">특허 심사, 2년에서 2개월로 줄인다</a></td>
-                    <td>관리자</td>
-                    <td>2020-12-21</td>
-                    <td>2076</td>
+                    <td th:text="${dto.no}"></td>
+                    <td><a href="#" th:text="${dto.title}"></a></td>
+                    <td th:text="${dto.writer}"></td>
+                    <td th:text="${dto.regdate}"></td>
+                    <td th:text="${dto.visitcount}"></td>
                   </tr>
 <!--                  <tr>-->
 <!--                    <td>80</td>-->
@@ -353,10 +353,12 @@
 <!--                  </tr>-->
                 </tbody>
               </table>
-              <div class="pagination">
-                <button>이전</button>
-                <span>1 2 3 4 5</span>
-                <button>다음</button>
+              <th:block th:utext="${paging}" />
+              <div class="btn_wrap">
+                <button type="submit" class="write admin"
+                        onclick="location.href='/customers/write_press'">
+                  글작성하기
+                </button>
               </div>
             </div>
           </div>

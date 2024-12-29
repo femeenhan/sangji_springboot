@@ -908,26 +908,26 @@ caption.nohead {
 /*}*/
 
 .pagination {
-  margin-top: 95px;
-  padding: 10px 0;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
 }
 .pagination .page_num {
-  display: inline-block;
-  margin: 0 3px;
-  min-width: 30px;
-  height: 30px;
-  background-color: transparent;
-  font-size: 18px;
-  color: var(--gray-400);
-  font-family: 'EB Garamond', 'Noto Sans KR', 'Noto Serif KR', sans-serif;
-  vertical-align: middle;
   line-height: 28px;
-  font-weight: 500;
+  width: 28px;
+  text-align: center;
+  display: block;
+  font-weight: 700;
+  color: var(--gray-500);
+  margin: 0 2px;
+  cursor: pointer;
+  position: relative;
 }
 .pagination .page_num.active {
-  position: relative;
-  color: var(--point-color1);
+  color: #fff;
+  background: var(--point-color1);
+  cursor: auto;
 }
 .pagination .page_num.active::after {
   content: '';
@@ -940,18 +940,14 @@ caption.nohead {
   background-color: var(--point-color1);
 }
 .pagination .page_num.page_prev {
-  font-size: 0;
-  background: url(../images/common/bu-paging-first.png) no-repeat center;
+  color: #717171;
 }
 .pagination .page_num.page_next {
-  font-size: 0;
-  background: url(../images/common/bu-paging-last.png) no-repeat center;
+  color: #717171;
 }
 .pagination .page_num.page_prev:hover {
-  background-image: url(../images/common/bu-paging-first-on.png);
 }
 .pagination .page_num.page_next:hover {
-  background-image: url(../images/common/bu-paging-last-on.png);
 }
 
 

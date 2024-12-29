@@ -8,8 +8,8 @@ import java.util.Map;
 @Data
 public class Pagination {
     // 기본값
-    private int pageSize = 10; 		// 한 페이지에 보일 게시물 사이즈
-    private int pageNavSize = 2; 	// 페이지 보여줄 단위(사이즈)
+    private int pageSize = 5; 		// 한 페이지에 보일 게시물 사이즈
+    private int pageNavSize = 3; 	// 페이지 보여줄 단위(사이즈)
     private int pageNum = 1; 		// 현재시작 페이지(current)
 
     // 계산되어질 값
@@ -84,18 +84,18 @@ public class Pagination {
         sb.append("<div class=\"pagination\">");
 
         // 첫페이지
-//        if (hasFirstPage) {
-//            sb.append("<a class='page_num page_first' href='");
-//            sb.append(request.getRequestURI());
-//            sb.append("?pageNum=1");
-//
-//            appendPageLink(sb);
-//
-//            sb.append("'>");
-//            sb.append("&lt;&lt;");
-//            sb.append("</a>");
-//        }
+        if (hasFirstPage) {
+            sb.append("<a class='page_num page_first' href='");
+            sb.append(request.getRequestURI());
+            sb.append("?pageNum=1");
 
+            appendPageLink(sb);
+
+            sb.append("'>");
+            sb.append("&lt;&lt;");
+            sb.append("</a>");
+        }
+        // &lt;&lt;
         // 이전페이지
         if (hasPrevPage) {
             sb.append("<a class='page_num page_prev' href='");
@@ -109,7 +109,7 @@ public class Pagination {
             sb.append("&lt;");
             sb.append("</a>");
         }
-
+        // &lt;
         // 현재페이지 블록
         for (int i = startPage; i <= endPage; i++) {
             if (pageNum == i) {
@@ -143,21 +143,21 @@ public class Pagination {
             sb.append("&gt;");
             sb.append("</a>");
         }
-
+        // &gt;
         // 끝 페이지
-//        if (hasLastPage) {
-//            sb.append("<a class='page_num page_last' href='");
-//            sb.append(request.getRequestURI());
-//            sb.append("?pageNum=");
-//            sb.append(totalPage);
-//
-//            appendPageLink(sb);
-//
-//            sb.append("'>");
-//            sb.append("&gt;&gt;");
-//            sb.append("</a>");
-//        }
+        if (hasLastPage) {
+            sb.append("<a class='page_num page_last' href='");
+            sb.append(request.getRequestURI());
+            sb.append("?pageNum=");
+            sb.append(totalPage);
 
+            appendPageLink(sb);
+
+            sb.append("'>");
+            sb.append("&gt;&gt;");
+            sb.append("</a>");
+        }
+        // &gt;
         sb.append("</div>");
 
         return sb.toString();

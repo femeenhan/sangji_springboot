@@ -22,8 +22,9 @@ public class NoticeService {
         return noticeMapper.selectOne(no);
     }
 
-    public int totalCount(Pagination pg){
-        return noticeMapper.totalCount(pg);
+    public Integer totalCount(Pagination pg){
+        Integer count = noticeMapper.totalCount(pg);
+        return count != null ? count : 0;
     }
 
     public void insert(NoticeDTO dto) {

@@ -27,11 +27,11 @@ class CustomerController {
                           HttpServletRequest request,
                           Model model) {
         pg.setPageNum(pageNum);
+        pg.setTableName("notice");
+        System.out.println("table data = " + ns.selectAll(pg));
         int totalCount = ns.totalCount(pg);
-        System.out.println(totalCount);
         pg.setTotalRecord(totalCount);
 
-        System.out.println(ns.selectAll(pg));
         model.addAttribute("list", ns.selectAll(pg));
         model.addAttribute("paging", pg.paging(request));
     }
@@ -40,10 +40,12 @@ class CustomerController {
     public void customer2(@RequestParam(defaultValue = "1") int pageNum,
                           HttpServletRequest request,
                           Model model) {
-        pg.setEndPage(pageNum);
-//        pg.setTableName("press_article");
+        pg.setPageNum(pageNum);
+        pg.setTableName("press_article");
         int totalCount = ns.totalCount(pg);
         pg.setTotalRecord(totalCount);
+//        System.out.println("totalCount = " + totalCount);
+
         model.addAttribute("list", ns.selectAll(pg));
         model.addAttribute("paging", pg.paging(request));
 

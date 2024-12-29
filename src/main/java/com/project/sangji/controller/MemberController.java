@@ -11,12 +11,8 @@ public class MemberController {
     public void loginMain() {
     }
 
-    @GetMapping("/login_find_id")
-    public void loginFindId() {
-    }
-
-    @GetMapping("/login_find_pw")
-    public void loginFindPw() {
+    @GetMapping("/login_find_info")
+    public void loginFindInfo() {
     }
 
     @GetMapping("/join")
