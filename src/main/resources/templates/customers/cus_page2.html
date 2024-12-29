@@ -53,7 +53,12 @@
                         <tbody>
                         <tr th:each="dto: ${list}">
                             <td th:text="${dto.no}"></td>
-                            <td><a href="#" th:text="${dto.title}"></a></td>
+                            <td>
+                                <a th:href="@{'/customers/page_view/' + ${dto.no}}"
+                                   th:text="${dto.title}">
+                                </a>
+                                <span th:if="${dto.nfile != null}" class="icon_clip"></span>
+                            </td>
                             <td th:text="${dto.writer}"></td>
                             <td th:text="${dto.regdate}"></td>
                             <td th:text="${dto.visitcount}"></td>

@@ -53,7 +53,16 @@ class CustomerController {
     }
 
     @GetMapping("/cus_page3")
-    public void customer3(Model model) {
+    public void customer3(@RequestParam(defaultValue = "1") int pageNum,
+                          HttpServletRequest request,
+                          Model model) {
+        pg.setPageNum(pageNum);
+        pg.setTableName("data_board");
+        int totalCount = ns.totalCount(pg);
+        pg.setTotalRecord(totalCount);
+
+        model.addAttribute("list", ns.selectAll(pg));
+        model.addAttribute("paging", pg.paging(request));
 
     }
 
