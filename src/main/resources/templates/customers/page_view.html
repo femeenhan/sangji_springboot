@@ -53,13 +53,14 @@
                     </div>
                     <div class="view_content">
                         <p th:text="${data.content}"></p>
+                        <p>test</p>
+                        <p th:text=""></p>
                         <img src="/images/test_image2.png"/>
                         <div class="name_card"></div>
                     </div>
                     <div class="btn_wrap">
                         <button type="submit" class="view_back"
-                                th:if="@{''}"
-                                th:href="${#strings.replace(#httpServletRequest.requestURI, 'page1', 'cus_page1')}">
+                                th:onclick="|location.href='@{/customers/' + ${tname} + '}';|">
                             목록보기
                         </button>
                         <button type="submit" class="write admin"

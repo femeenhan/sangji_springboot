@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -72,10 +75,25 @@ class CustomerController {
     }
 
     @GetMapping("/page_view/{no}")
-    public String pageView(@PathVariable("no") int no, Model model) {
-        model.addAttribute("data", ns.selectOne(no));
-        return "customers/page_view";
+    public void pageView(@PathVariable("no") int no,
+                         Model model
+    ) {
+        Map<String, Object> maps = new HashMap<>();
+        maps.put("no", no);
+        maps.put("tname", pg.getTableName());
+
+        System.out.println(maps);
+        model.addAttribute("tname", maps.get("tname"));
+        model.addAttribute("dto", ns.selectOne(maps));
+//        return "page_view";
     }
+
+//    @GetMapping("/page_view/{no}")
+//    public String pageView(@PathVariable("no") int no,
+//                           Model model) {
+//        model.addAttribute("data", ns.selectOne(no));
+//        return "customers/page_view";
+//    }
 
     @GetMapping("/write_notice")
     public void writeNotice() {

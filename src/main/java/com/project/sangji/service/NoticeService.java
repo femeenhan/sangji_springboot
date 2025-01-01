@@ -18,15 +18,15 @@ public class NoticeService {
         return noticeMapper.selectAll(pg);
     }
 
-    public NoticeDTO selectOne(int no) {
-        return noticeMapper.selectOne(no);
+    public NoticeDTO selectOne(Map<String, Object> maps) {
+        return noticeMapper.selectOne(maps);
     }
 
     public Integer totalCount(Pagination pg) {
         Integer count = noticeMapper.totalCount(pg);
         return count != null ? count : 0;
     }
-    
+
     public void insert(NoticeDTO dto) {
         noticeMapper.insert(dto);
     }

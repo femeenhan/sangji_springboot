@@ -1,38 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.sangji.mapper.NoticeMapper">
     <select id="selectAll" parameterType="com.project.sangji.common.Pagination"
             resultType="NoticeDTO">
-        SELECT NO,
-               WRITER,
-               TITLE,
-               CONTENT,
-               DATE(REGDATE) AS REGDATE,
-               VISITCOUNT
+        SELECT NO, WRITER, TITLE, CONTENT, DATE (REGDATE) AS REGDATE, VISITCOUNT
         FROM ${tableName}
         order by no desc
-        limit #{pageSize} offset #{offset}
+            limit #{pageSize}
+        offset #{offset}
     </select>
     <select id="totalCount" parameterType="com.project.sangji.common.Pagination"
             resultType="int">
-        select count(*) from ${tableName}
+        select count(*)
+        from ${tableName}
     </select>
 
-    <select id="selectOne" parameterType="int" resultType="NoticeDTO">
-        SELECT N.NO,
-               N.WRITER,
-               N.TITLE,
-               N.CONTENT,
-            DATE(N.REGDATE) AS REGDATE,
-            N.VISITCOUNT,
-            NF.OFILE,
-            NF.NFILE
-        FROM NOTICE N
-            LEFT OUTER JOIN NOTICE_FILE NF
-        ON N.NO = NF.NOTICENO
-        WHERE 1=1
-        AND N.NO = #{no}
+    <select id="selectOne" parameterType="map" resultType="NoticeDTO">
+        SELECT NO, WRITER, TITLE, CONTENT, DATE (REGDATE) AS REGDATE, VISITCOUNT
+        FROM #{tname}
+        WHERE NO = #{no}
     </select>
 
 </mapper>
