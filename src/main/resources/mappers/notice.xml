@@ -17,9 +17,9 @@
         from ${tableName}
     </select>
 
-    <select id="selectOne" parameterType="map" resultType="NoticeDTO">
+    <select id="selectOne" parameterType="int" resultType="NoticeDTO">
         SELECT NO, WRITER, TITLE, CONTENT, DATE (REGDATE) AS REGDATE, VISITCOUNT
-        FROM #{tname}
+        FROM notice
         WHERE NO = #{no}
     </select>
 

@@ -12,7 +12,7 @@ public interface NoticeMapper {
 
     List<NoticeDTO> selectAll(Pagination pg);
 
-    NoticeDTO selectOne(Map<String, Object> maps);
+    NoticeDTO selectOne(int no);
 
     Integer totalCount(Pagination pg);
 

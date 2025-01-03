@@ -75,17 +75,14 @@ class CustomerController {
     }
 
     @GetMapping("/page_view/{no}")
-    public void pageView(@PathVariable("no") int no,
+    public String pageView(@PathVariable("no") int no,
                          Model model
     ) {
-        Map<String, Object> maps = new HashMap<>();
-        maps.put("no", no);
-        maps.put("tname", pg.getTableName());
-
-        System.out.println(maps);
-        model.addAttribute("tname", maps.get("tname"));
-        model.addAttribute("dto", ns.selectOne(maps));
-//        return "page_view";
+        System.out.println("view page-------------------------------------");
+        System.out.println(ns.selectOne(no).toString());
+        model.addAttribute("link", "/customers");
+        model.addAttribute("dto", ns.selectOne(no));
+        return "customers/page_view";
     }
 
 //    @GetMapping("/page_view/{no}")

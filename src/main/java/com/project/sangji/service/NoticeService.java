@@ -18,8 +18,8 @@ public class NoticeService {
         return noticeMapper.selectAll(pg);
     }
 
-    public NoticeDTO selectOne(Map<String, Object> maps) {
-        return noticeMapper.selectOne(maps);
+    public NoticeDTO selectOne(int no) {
+        return noticeMapper.selectOne(no);
     }
 
     public Integer totalCount(Pagination pg) {

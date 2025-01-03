@@ -28,15 +28,15 @@
                     <div class="view_info">
                         <p>
                             <span>작성자</span>
-                            <span th:text="${data.writer}"></span>
+                            <span th:text="${dto.writer}"></span>
                         </p>
                         <p>
                             <span class="date_info"></span>
-                            <span th:text="${data.regdate}"></span>
+                            <span th:text="${dto.regdate}"></span>
                         </p>
                         <p>
                             <span>조회수</span>
-                            <span th:text="${data.visitcount}"></span>
+                            <span th:text="${dto.visitcount}"></span>
                         </p>
                     </div>
                     <div
@@ -49,18 +49,17 @@
                 "
                     ></div>
                     <div class="view_wrap">
-                        <h2 th:text="${data.title}"></h2>
+                        <h2 th:text="${dto.title}"></h2>
                     </div>
                     <div class="view_content">
-                        <p th:text="${data.content}"></p>
+                        <p th:text="${dto.content}"></p>
                         <p>test</p>
                         <p th:text=""></p>
                         <img src="/images/test_image2.png"/>
                         <div class="name_card"></div>
                     </div>
                     <div class="btn_wrap">
-                        <button type="submit" class="view_back"
-                                th:onclick="|location.href='@{/customers/' + ${tname} + '}';|">
+                        <button type="submit" class="view_back">
                             목록보기
                         </button>
                         <button type="submit" class="write admin"
