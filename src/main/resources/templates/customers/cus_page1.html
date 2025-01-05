@@ -54,7 +54,6 @@
                         <tr th:each="dto : ${list}">
                             <td>[공지]</td>
                             <td>
-<!--                                <a th:href="@{'/customers/page_view/' + ${dto.no}}"-->
                                 <a th:href="@{'/customers/page_view/' + ${dto.no}}"
                                    th:text="${dto.title}"></a>
                                 <span th:if="${dto.nfile != null}" class="icon_clip"></span>

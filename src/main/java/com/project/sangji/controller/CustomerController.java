@@ -76,21 +76,14 @@ class CustomerController {
 
     @GetMapping("/page_view/{no}")
     public String pageView(@PathVariable("no") int no,
-                         Model model
-    ) {
-        System.out.println("view page-------------------------------------");
-        System.out.println(ns.selectOne(no).toString());
+                           Model model,
+                           HttpServletRequest request) {
+
+        System.out.println("pathInfo = " + request.getPathInfo());
         model.addAttribute("link", "/customers");
         model.addAttribute("dto", ns.selectOne(no));
         return "customers/page_view";
     }
-
-//    @GetMapping("/page_view/{no}")
-//    public String pageView(@PathVariable("no") int no,
-//                           Model model) {
-//        model.addAttribute("data", ns.selectOne(no));
-//        return "customers/page_view";
-//    }
 
     @GetMapping("/write_notice")
     public void writeNotice() {
