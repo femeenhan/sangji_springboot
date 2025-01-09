@@ -16,4 +16,5 @@ public class NoticeDTO {
     private int visitcount;
     private String ofile;
     private String nfile;
+    private String tableName = "notice";
 }

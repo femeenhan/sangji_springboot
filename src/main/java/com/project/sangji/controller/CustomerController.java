@@ -32,7 +32,7 @@ class CustomerController {
                           Model model) {
         pg.setPageNum(pageNum);
         pg.setTableName("notice");
-        System.out.println("table data = " + ns.selectAll(pg));
+//        System.out.println("table data = " + ns.selectAll(pg));
         int totalCount = ns.totalCount(pg);
         pg.setTotalRecord(totalCount);
 
@@ -76,11 +76,9 @@ class CustomerController {
 
     @GetMapping("/page_view/{no}")
     public String pageView(@PathVariable("no") int no,
-                           Model model,
-                           HttpServletRequest request) {
+                           Model model) {
 
-        System.out.println("pathInfo = " + request.getPathInfo());
-        model.addAttribute("link", "/customers");
+        model.addAttribute("link", "/cus_page1");
         model.addAttribute("dto", ns.selectOne(no));
         return "customers/page_view";
     }

@@ -8,39 +8,40 @@ import java.util.Map;
 @Data
 public class Pagination {
     // 기본값
-    private int pageSize = 5; 		// 한 페이지에 보일 게시물 사이즈
-    private int pageNavSize = 3; 	// 페이지 보여줄 단위(사이즈)
-    private int pageNum = 1; 		// 현재시작 페이지(current)
+    private int pageSize = 10;        // 한 페이지에 보일 게시물 사이즈
+    private int pageNavSize = 5;    // 페이지 보여줄 단위(사이즈)
+    private int pageNum = 1;        // 현재시작 페이지(current)
 
     // 계산되어질 값
-    private int totalPage; 			// 총 페이지 갯수
-    private long totalRecord; 		// 총 게시물(레코드) 갯수
-    private int startPage; 			// 페이지의 시작번호
-    private int endPage; 			// 페이지의 마지막번호
-    private int prevPage;			// 이전페이지(블록)
-    private int nextPage;			// 다음페이지(블록)
-    private int offset;             // (pageNum-1) * pageSize : mySql용
+    private int totalPage;            // 총 페이지 갯수
+    private long totalRecord;        // 총 게시물(레코드) 갯수
+    private int startPage;            // 페이지의 시작번호
+    private int endPage;            // 페이지의 마지막번호
+    private int prevPage;            // 이전페이지(블록)
+    private int nextPage;            // 다음페이지(블록)
+    private int offset;
     private String tableName;
 
     // 버튼 노출여부
-    private boolean hasPrevPage; 	// 이전페이지
-    private boolean hasNextPage; 	// 다음페이지
-    private boolean hasFirstPage; 	// 맨 첫번째 페이지
-    private boolean hasLastPage; 	// 맨 마지막 페이지
+    private boolean hasPrevPage;    // 이전페이지
+    private boolean hasNextPage;    // 다음페이지
+    private boolean hasFirstPage;    // 맨 첫번째 페이지
+    private boolean hasLastPage;    // 맨 마지막 페이지
 
     // 검색
-    private Map<String, String> searchMap; 	// 검색
-    private String orderName = "NO";		// 차순명 지정
-    private String order = "DESC";	        // 오름차순 / 내림차순
+    private Map<String, String> searchMap;    // 검색
+    private String orderName = "NO";        // 차순명 지정
+    private String order = "DESC";            // 오름차순 / 내림차순
 
     // DB 시작/끝 지정
-    private int start;				// 시작번호
-    private int end;				// 끝번호
+    private int start;                // 시작번호
+    private int end;                // 끝번호
 
-    public Pagination() {}
+    public Pagination() {
+    }
 
     public Pagination(int pageNum, long totalRecord) {
-        if(pageNum < 1) pageNum = 1;
+//        if (pageNum < 1) pageNum = 1;
         this.pageNum = pageNum;
         this.totalRecord = totalRecord;
 
@@ -50,7 +51,11 @@ public class Pagination {
     public void calculation() {
         totalPage = (int) Math.ceil(totalRecord / (double) pageSize);
 
-        offset = (pageNum - 1) * pageSize;
+        if (pageNum == 1) {
+            offset = 0;
+        } else {
+            offset = (pageNum - 1) * pageSize;
+        }
 
         // view
         startPage = (pageNum - 1) / pageNavSize * pageNavSize + 1;
@@ -82,10 +87,10 @@ public class Pagination {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<div class=\"pagination\">");
-
         // 첫페이지
         if (hasFirstPage) {
-            sb.append("<a class='page_num page_first' href='");
+            System.out.println(offset);
+            sb.append("<a class='page_num' href='");
             sb.append(request.getRequestURI());
             sb.append("?pageNum=1");
 
@@ -93,6 +98,15 @@ public class Pagination {
 
             sb.append("'>");
             sb.append("&lt;&lt;");
+            sb.append("</a>");
+        } else {
+            sb.append("<a class='page_num page_first' href='");
+            sb.append(request.getRequestURI());
+            sb.append("?pageNum=1");
+
+            appendPageLink(sb);
+
+            sb.append("'>");
             sb.append("</a>");
         }
         // &lt;&lt;

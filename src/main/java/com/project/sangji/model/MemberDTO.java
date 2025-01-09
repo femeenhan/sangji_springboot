@@ -18,4 +18,6 @@ public class MemberDTO {
     private String address;
     private String addr_detail;
     private String isAdmin;
+    private String tableName = "member";
+
 }
