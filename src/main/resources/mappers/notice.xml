@@ -5,16 +5,25 @@
 <mapper namespace="com.project.sangji.mapper.NoticeMapper">
     <select id="selectAll" parameterType="com.project.sangji.common.Pagination"
             resultType="NoticeDTO">
-        SELECT NO, WRITER, TITLE, CONTENT, DATE (REGDATE) AS REGDATE, VISITCOUNT
+        SELECT ${tableName}.NO,
+               ${tableName}.WRITER,
+               ${tableName}.TITLE,
+               ${tableName}.CONTENT,
+               nf.nfile,
+               nf.ofile, DATE (
+               ${tableName}.REGDATE) AS REGDATE,
+               ${tableName}.VISITCOUNT
         FROM ${tableName}
-        order by no desc
-            limit #{pageSize}
-        offset #{offset}
+            LEFT OUTER JOIN NOTICE_FILE NF
+        ON ${tableName}.NO = NF.fileNO
+        ORDER BY ${tableName}.NO DESC
+            LIMIT #{pageSize}
+        OFFSET #{offset}
     </select>
     <select id="totalCount" parameterType="com.project.sangji.common.Pagination"
             resultType="int">
-        select count(*)
-        from ${tableName}
+        SELECT COUNT(*)
+        FROM notice
     </select>
 
     <select id="selectOne" parameterType="int" resultType="NoticeDTO">
@@ -22,5 +31,25 @@
         FROM notice
         WHERE NO = #{no}
     </select>
+
+    <insert id="insert" parameterType="NoticeDTO">
+        INSERT INTO NOTICE (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
+        VALUES #{writer}, #{title}, #{content}, now(), 1
+    </insert>
+
+    <update id="update">
+        UPDATE NOTICE
+        SET writer  = #{writer},
+            title   = #{title},
+            content = #{content},
+            regdate = now()
+        WHERE NO = #{NO}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM NOTICE
+        WHERE NO = #{NO}
+    </delete>
 
 </mapper>
