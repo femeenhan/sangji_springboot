@@ -2,28 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.sangji.mapper.NoticeMapper">
+<mapper namespace="com.project.sangji.mapper.PressMapper">
     <select id="selectOne" parameterType="int" resultType="BoardDTO">
-        SELECT N.NO,
-               N.WRITER,
-               N.TITLE,
-               N.CONTENT,
-               N.VISITCOUNT,
-               NF.NFILE,
-               NF.OFILE, DATE (N.REGDATE) AS REGDATE
-        FROM NOTICE N
-            LEFT OUTER JOIN NOTICE_FILE NF
-        ON N.NO = NF.FILENO
-        WHERE N.NO = #{N.NO}
+        SELECT P.NO,
+               P.WRITER,
+               P.TITLE,
+               P.CONTENT,
+               P.VISITCOUNT,
+               PF.NFILE,
+               PF.OFILE,
+               DATE(P.REGDATE) AS REGDATE
+        FROM PRESS P
+                 LEFT OUTER JOIN PRESS_FILE PF
+                                 ON P.NO = PF.FILENO
+        WHERE P.NO = #{P.NO}
     </select>
 
     <insert id="insert" parameterType="BoardDTO">
-        INSERT INTO NOTICE (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
+        INSERT INTO PRESS (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
         VALUES (#{writer}, #{title}, #{content}, now(), 1)
     </insert>
 
     <update id="update">
-        UPDATE NOTICE
+        UPDATE PRESS
         SET writer  = #{writer},
             title   = #{title},
             content = #{content},
@@ -33,7 +34,7 @@
 
     <delete id="delete">
         DELETE
-        FROM NOTICE
+        FROM PRESS
         WHERE NO = #{NO}
     </delete>
 

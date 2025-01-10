@@ -1,5 +1,6 @@
 package com.project.sangji.service;
 
+import com.project.sangji.mapper.DataMapper;
 import com.project.sangji.mapper.NoticeMapper;
 import com.project.sangji.model.BoardDTO;
 import lombok.RequiredArgsConstructor;
@@ -7,22 +8,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class NoticeService {
-    private final NoticeMapper noticeMapper;
+public class DataService {
+    private final DataMapper dataMapper;
 
     public BoardDTO selectOne(int no) {
-        return noticeMapper.selectOne(no);
+        return dataMapper.selectOne(no);
     }
 
     public void insert(BoardDTO dto) {
-        noticeMapper.insert(dto);
+        dataMapper.insert(dto);
     }
 
     public void update(BoardDTO dto) {
-        noticeMapper.update(dto);
+        dataMapper.update(dto);
     }
 
     public void delete(int no) {
-        noticeMapper.delete(no);
+        dataMapper.delete(no);
     }
 }

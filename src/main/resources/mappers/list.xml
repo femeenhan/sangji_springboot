@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.sangji.mapper.ListMapper">
+    <select id="selectAll" parameterType="com.project.sangji.common.Pagination"
+            resultType="BoardDTO">
+        SELECT ${tableName}.NO,
+               ${tableName}.WRITER,
+               ${tableName}.TITLE,
+               ${tableName}.CONTENT,
+               nf.nfile,
+               nf.ofile,
+               DATE(${tableName}.REGDATE) AS REGDATE,
+               ${tableName}.VISITCOUNT
+        FROM ${tableName}
+                 LEFT OUTER JOIN ${tableName}_FILE NF
+                                 ON ${tableName}.NO = NF.fileNO
+        ORDER BY ${tableName}.NO DESC
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+    <select id="totalCount" parameterType="com.project.sangji.common.Pagination"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM ${tableName}
+    </select>
+</mapper>

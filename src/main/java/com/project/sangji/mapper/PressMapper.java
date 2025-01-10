@@ -4,7 +4,7 @@ import com.project.sangji.model.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface NoticeMapper {
+public interface PressMapper {
 
     BoardDTO selectOne(int no);
 

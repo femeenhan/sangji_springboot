@@ -2,28 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.sangji.mapper.NoticeMapper">
+<mapper namespace="com.project.sangji.mapper.DataMapper">
     <select id="selectOne" parameterType="int" resultType="BoardDTO">
-        SELECT N.NO,
-               N.WRITER,
-               N.TITLE,
-               N.CONTENT,
-               N.VISITCOUNT,
-               NF.NFILE,
-               NF.OFILE, DATE (N.REGDATE) AS REGDATE
-        FROM NOTICE N
-            LEFT OUTER JOIN NOTICE_FILE NF
-        ON N.NO = NF.FILENO
-        WHERE N.NO = #{N.NO}
+        SELECT D.NO,
+               D.WRITER,
+               D.TITLE,
+               D.CONTENT,
+               D.VISITCOUNT,
+               DF.NFILE,
+               DF.OFILE,
+               DATE(D.REGDATE) AS REGDATE
+        FROM DATA D
+                 LEFT OUTER JOIN DATA_FILE DF
+                                 ON D.NO = DF.FILENO
+        WHERE D.NO = #{D.NO}
     </select>
 
     <insert id="insert" parameterType="BoardDTO">
-        INSERT INTO NOTICE (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
+        INSERT INTO DATA (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
         VALUES (#{writer}, #{title}, #{content}, now(), 1)
     </insert>
 
     <update id="update">
-        UPDATE NOTICE
+        UPDATE DATA
         SET writer  = #{writer},
             title   = #{title},
             content = #{content},
@@ -33,7 +34,7 @@
 
     <delete id="delete">
         DELETE
-        FROM NOTICE
+        FROM DATA
         WHERE NO = #{NO}
     </delete>
 

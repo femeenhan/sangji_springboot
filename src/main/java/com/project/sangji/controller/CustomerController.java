@@ -1,29 +1,26 @@
 package com.project.sangji.controller;
 
 import com.project.sangji.common.Pagination;
-import com.project.sangji.model.NoticeDTO;
+import com.project.sangji.model.BoardDTO;
+import com.project.sangji.service.ListService;
 import com.project.sangji.service.NoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/customers")
 class CustomerController {
-
+    private final ListService ls;
     private final NoticeService ns;
-    List<NoticeDTO> dto;
+    List<BoardDTO> dto;
     Pagination pg = new Pagination();
 
     @GetMapping("/cus_page1")
@@ -33,10 +30,10 @@ class CustomerController {
         pg.setPageNum(pageNum);
         pg.setTableName("notice");
 //        System.out.println("table data = " + ns.selectAll(pg));
-        int totalCount = ns.totalCount(pg);
+        int totalCount = ls.totalCount(pg);
         pg.setTotalRecord(totalCount);
 
-        model.addAttribute("list", ns.selectAll(pg));
+        model.addAttribute("list", ls.selectAll(pg));
         model.addAttribute("paging", pg.paging(request));
     }
 
@@ -45,12 +42,12 @@ class CustomerController {
                           HttpServletRequest request,
                           Model model) {
         pg.setPageNum(pageNum);
-        pg.setTableName("press_article");
-        int totalCount = ns.totalCount(pg);
+        pg.setTableName("press");
+        int totalCount = ls.totalCount(pg);
         pg.setTotalRecord(totalCount);
 //        System.out.println("totalCount = " + totalCount);
 
-        model.addAttribute("list", ns.selectAll(pg));
+        model.addAttribute("list", ls.selectAll(pg));
         model.addAttribute("paging", pg.paging(request));
 
     }
@@ -60,11 +57,11 @@ class CustomerController {
                           HttpServletRequest request,
                           Model model) {
         pg.setPageNum(pageNum);
-        pg.setTableName("data_board");
-        int totalCount = ns.totalCount(pg);
+        pg.setTableName("data");
+        int totalCount = ls.totalCount(pg);
         pg.setTotalRecord(totalCount);
 
-        model.addAttribute("list", ns.selectAll(pg));
+        model.addAttribute("list", ls.selectAll(pg));
         model.addAttribute("paging", pg.paging(request));
 
     }
@@ -74,13 +71,28 @@ class CustomerController {
 
     }
 
-    @GetMapping("/page_view/{no}")
-    public String pageView(@PathVariable("no") int no,
-                           Model model) {
-
-        model.addAttribute("link", "/cus_page1");
+    @GetMapping("/page1_view/{no}")
+    public String page1View(@PathVariable("no") int no,
+                            Model model) {
         model.addAttribute("dto", ns.selectOne(no));
-        return "customers/page_view";
+        System.out.println("next = " + ns.selectOne(no));
+        return "customers/page1_view";
+    }
+
+    @GetMapping("/page2_view/{no}")
+    public String page2View(@PathVariable("no") int no,
+                            Model model) {
+
+        model.addAttribute("dto", ns.selectOne(no));
+        return "customers/page2_view";
+    }
+
+    @GetMapping("/page3_view/{no}")
+    public String page3View(@PathVariable("no") int no,
+                            Model model) {
+
+        model.addAttribute("dto", ns.selectOne(no));
+        return "customers/page3_view";
     }
 
     @GetMapping("/write_notice")

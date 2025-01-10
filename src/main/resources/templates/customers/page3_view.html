@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head layout:fragment="config">
+    <title>상지국제특허</title>
+    <link rel="stylesheet" href="/css/customers.css"/>
+    <script src="/js/customers.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <main id="sub_container" layout:fragment="content">
+        <section class="page_top">
+            <div class="main_title">
+                <h1>고객센터</h1>
+                <p>Home > 고객센터 > 자료실</p>
+            </div>
+        </section>
+        <section class="page_bottom">
+            <div class="sub_title">
+                <h2>자료실</h2>
+                <h3><span>상지국제특허법률사무소</span>가 제공하는 각종 자료입니다.</h3>
+            </div>
+            <div class="sub_section">
+                <h2 class="blind">서브</h2>
+                <div class="inner">
+                    <div class="view_info">
+                        <p>
+                            <span>작성자</span>
+                            <span th:text="${dto.writer}"></span>
+                        </p>
+                        <p>
+                            <span class="date_info"></span>
+                            <span th:text="${dto.regdate}"></span>
+                        </p>
+                        <p>
+                            <span>조회수</span>
+                            <span th:text="${dto.visitcount}"></span>
+                        </p>
+                    </div>
+                    <div class="separator"
+                         style="height: 3px; width: 100%; background: #1c1c1c; margin-bottom: 20px;"></div>
+                    <div class="view_wrap">
+                        <h2 th:text="${dto.title}"></h2>
+                    </div>
+                    <div class="view_content">
+                        <p th:text="${dto.content}"></p>
+                        <p>test</p>
+                        <!--                        <p th:text=""></p>-->
+                        <!--                        <img src="/images/test_image2.png"/>-->
+                        <div class="name_card"></div>
+                    </div>
+                    <div class="btn_wrap">
+                        <button type="submit" class="view_back"
+                                th:onclick="'history.back()'">
+                            <!-- th:onclick="|location.href='@{${'/customers' + link}}'|">-->
+                            목록보기
+                        </button>
+
+                        <button type="submit" class="write admin"
+                                onclick="location.href='/customers/write_data'" data-admin="Y">
+                            글작성하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
