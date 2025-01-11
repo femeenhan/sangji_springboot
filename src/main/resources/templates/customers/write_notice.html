@@ -25,7 +25,8 @@
                 <h2 class="blind">서브</h2>
                 <div class="inner">
                     <div class="part_wrap">
-                        <form id="write">
+                        <form action="/customers/write_notice" method="post"
+                              enctype="multipart/form-data">
                             <div class="input_wrap">
                                 <div class="title">
                                     <h3>글제목</h3>
@@ -49,7 +50,7 @@
                                     <h3>파일첨부</h3>
                                 </div>
                                 <div class="input_request">
-                                    <input type="file" name="file"/>
+                                    <input type="file" name="file" multiple/>
                                 </div>
                             </div>
                         </form>

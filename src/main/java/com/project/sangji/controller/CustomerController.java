@@ -1,7 +1,9 @@
 package com.project.sangji.controller;
 
+import com.project.sangji.common.FileStorage;
 import com.project.sangji.common.Pagination;
 import com.project.sangji.model.BoardDTO;
+import com.project.sangji.model.FileDTO;
 import com.project.sangji.service.ListService;
 import com.project.sangji.service.NoticeService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,6 +24,7 @@ import java.util.List;
 class CustomerController {
     private final ListService ls;
     private final NoticeService ns;
+    private final FileStorage fileStorage;
     List<BoardDTO> dto;
     Pagination pg = new Pagination();
 
@@ -75,7 +80,7 @@ class CustomerController {
     public String page1View(@PathVariable("no") int no,
                             Model model) {
         model.addAttribute("dto", ns.selectOne(no));
-        System.out.println("next = " + ns.selectOne(no));
+        System.out.println(ns.selectOne(no));
         return "customers/page1_view";
     }
 
@@ -96,11 +101,31 @@ class CustomerController {
     }
 
     @GetMapping("/write_notice")
-    public void writeNotice() {
+    public String writeNotice(@ModelAttribute BoardDTO dto,
+                              @RequestParam("file") MultipartFile[] files) {
+        List<FileDTO> list = fileStorage.fileUpload(files);
+        System.out.println(list.size());
+        if (!list.isEmpty()) {
+            dto.setOfile(list.getFirst().getOFile());
+            dto.setNfile(list.getFirst().getNFile());
+        }
+
+        ns.insert(dto);
+        return "redirect:/customers/cus_page1";
     }
 
     @GetMapping("/write_press")
     public void writePress() {
     }
+
+    @GetMapping("/download/{no}")
+    public ResponseEntity<InputStreamResource> download(@PathVariable("no") int no) {
+        BoardDTO dto = ns.selectOne(no);
+        if (dto != null) {
+            return fileStorage.downloadFile(dto.getOfile(), dto.getNfile());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 
 }
