@@ -100,27 +100,35 @@ class CustomerController {
         return "customers/page3_view";
     }
 
+    @GetMapping("/write_notice")
+    public void writeNotice() {
+    }
+
     @PostMapping("/write_notice")
-    public void writeNotice(@ModelAttribute BoardDTO dto,
-                            @RequestParam("file") MultipartFile[] files) {
+    public String writeNotice(@ModelAttribute BoardDTO dto,
+                              @RequestParam("file") MultipartFile[] files) {
         List<FileDTO> list = fileStorage.fileUpload(files);
-        System.out.println("----------writing----------");
         if (!list.isEmpty()) {
             dto.setOfile(list.getFirst().getOFile());
             dto.setNfile(list.getFirst().getNFile());
         }
 
         ns.insert(dto);
-//        return "redirect:/customers/cus_page1";
+        return "redirect:/customers/cus_page1";
     }
 
-    @PostMapping("/write_press")
-    public void writePress() {
+    @GetMapping("/insert")
+    public String insert() {
+        return "customers/insert";
     }
-
-    @PostMapping("/write_data")
-    public void writeData() {
-    }
+//
+//    @PostMapping("/write_press")
+//    public void writePress() {
+//    }
+//
+//    @PostMapping("/write_data")
+//    public void writeData() {
+//    }
 
     @GetMapping("/download/{no}")
     public ResponseEntity<InputStreamResource> download(@PathVariable("no") int no) {
