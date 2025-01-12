@@ -32,8 +32,9 @@
                                     <h3>글제목</h3>
                                 </div>
                                 <div class="input_request">
-                                    <input type="text" name="title" placeholder="제목" required
-                                    />
+                                    <input type="text" name="title" placeholder="제목"
+                                           autocomplete="off" maxlength="255"
+                                           required/>
                                 </div>
                             </div>
                             <div class="input_wrap">
@@ -50,17 +51,18 @@
                                     <h3>파일첨부</h3>
                                 </div>
                                 <div class="input_request">
-                                    <input type="file" name="file" multiple/>
+                                    <label for="file_box">찾아보기</label>
+                                    <input type="file" name="file" id="file_box"/>
                                 </div>
                             </div>
+                            <div class="btn_wrap">
+                                <button class="save" type="button">
+                                    저장
+                                </button>
+                                <button class="cancel" type="button">취소
+                                </button>
+                            </div>
                         </form>
-                        <div class="btn_wrap">
-                            <button class="save" onclick="location.href='/customers/cus_page1'">저장
-                            </button>
-                            <button class="cancel" type="submit"
-                                    onclick="location.href='/customers/cus_page1'">취소
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

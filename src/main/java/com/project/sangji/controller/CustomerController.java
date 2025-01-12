@@ -100,22 +100,26 @@ class CustomerController {
         return "customers/page3_view";
     }
 
-    @GetMapping("/write_notice")
-    public String writeNotice(@ModelAttribute BoardDTO dto,
-                              @RequestParam("file") MultipartFile[] files) {
+    @PostMapping("/write_notice")
+    public void writeNotice(@ModelAttribute BoardDTO dto,
+                            @RequestParam("file") MultipartFile[] files) {
         List<FileDTO> list = fileStorage.fileUpload(files);
-        System.out.println(list.size());
+        System.out.println("----------writing----------");
         if (!list.isEmpty()) {
             dto.setOfile(list.getFirst().getOFile());
             dto.setNfile(list.getFirst().getNFile());
         }
 
         ns.insert(dto);
-        return "redirect:/customers/cus_page1";
+//        return "redirect:/customers/cus_page1";
     }
 
-    @GetMapping("/write_press")
+    @PostMapping("/write_press")
     public void writePress() {
+    }
+
+    @PostMapping("/write_data")
+    public void writeData() {
     }
 
     @GetMapping("/download/{no}")
