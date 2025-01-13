@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 public class MemberService {
     private final MemberMapper memberMapper;
 
-    public void insertMember(MemberDTO memberDTO) {
+    public void join(MemberDTO dto) {
+        memberMapper.join(dto);
     }
 
 }

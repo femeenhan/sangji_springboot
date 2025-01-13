@@ -9,17 +9,22 @@
         WHERE NO = #{NO}
     </select>
 
-    <insert id="insert" parameterType="BoardDTO">
-        INSERT INTO NOTICE (WRITER, TITLE, CONTENT, OFILE, NFILE, REGDATE, VISITCOUNT)
-        VALUES (#{writer}, #{title}, #{content}, null, null, now(), 1)
+    <insert id="insert">
+        INSERT INTO NOTICE (TITLE, CONTENT, OFILE, NFILE)
+        VALUES (#{title}, #{content}, #{ofile}, #{nfile})
     </insert>
 
     <update id="update">
         UPDATE NOTICE
-        SET writer  = #{writer},
-            title   = #{title},
-            content = #{content},
-            regdate = now()
+        SET writer = #{writer},
+        title = #{title},
+        content = #{content},
+        <if test="ofile != null and ofile != ''">
+            ofile = #{ofile},
+        </if>
+        <if test="nfile != null and nfile != ''">
+            nfile = #{nfile}
+        </if>
         WHERE NO = #{NO}
     </update>
 

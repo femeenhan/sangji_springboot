@@ -123,6 +123,7 @@ class CustomerController {
 
     @GetMapping("/write_notice")
     public void writeNotice() {
+
     }
 
     @PostMapping("/write_notice")
@@ -170,11 +171,6 @@ class CustomerController {
 
         ds.insert(dto);
         return "redirect:/customers/cus_page3";
-    }
-
-    @GetMapping("/insert")
-    public String insert() {
-        return "customers/insert";
     }
 
     @GetMapping("/download/{no}")

@@ -9,7 +9,7 @@ import java.util.List;
 public interface MemberMapper {
 
     // 회원가입
-    void insertMember(MemberDTO memberDTO);
+    void join(MemberDTO dto);
 
 }
 

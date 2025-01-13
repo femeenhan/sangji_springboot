@@ -8,9 +8,9 @@ public interface PressMapper {
 
     BoardDTO selectOne(int no);
 
-    void insert(BoardDTO notice);
+    void insert(BoardDTO dto);
 
-    void update(BoardDTO notice);
+    void update(BoardDTO dto);
 
     void delete(int no);
 }
