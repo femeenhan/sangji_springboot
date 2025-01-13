@@ -5,18 +5,35 @@
 <mapper namespace="com.project.sangji.mapper.ListMapper">
     <select id="selectAll" parameterType="com.project.sangji.common.Pagination"
             resultType="BoardDTO">
-        SELECT ${tableName}.NO,
-               ${tableName}.WRITER,
-               ${tableName}.TITLE,
-               ${tableName}.CONTENT,
-               nf.nfile,
-               nf.ofile,
-               DATE(${tableName}.REGDATE) AS REGDATE,
-               ${tableName}.VISITCOUNT
+        SELECT NO,
+        WRITER,
+        TITLE,
+        CONTENT,
+        ofile,
+        nfile,
+        DATE(${tableName}.REGDATE) AS REGDATE,
+        VISITCOUNT
         FROM ${tableName}
-                 LEFT OUTER JOIN ${tableName}_FILE NF
-                                 ON ${tableName}.NO = NF.fileNO
-        ORDER BY ${tableName}.NO DESC
+        <if test="searchMap != null">
+            <where>
+                <choose>
+                    <when test="searchMap.searchType == 'all'">
+                        (title like CONCAT('%', #{searchMap.keyword}, '%') OR content like
+                        CONCAT('%', #{searchMap.keyword}, '%'))
+                    </when>
+                    <when test="searchMap.searchType == 'title'">
+                        title like CONCAT('%', #{searchMap.keyword}, '%')
+                    </when>
+                    <when test="searchMap.searchType == 'writer'">
+                        writer like CONCAT('%', #{searchMap.keyword}, '%')
+                    </when>
+                    <when test="searchMap.searchType == 'content'">
+                        content like CONCAT('%', #{searchMap.keyword}, '%')
+                    </when>
+                </choose>
+            </where>
+        </if>
+        ORDER BY NO DESC
         LIMIT #{pageSize} OFFSET #{offset}
     </select>
     <select id="totalCount" parameterType="com.project.sangji.common.Pagination"

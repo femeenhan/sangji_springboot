@@ -4,8 +4,10 @@ import com.project.sangji.common.FileStorage;
 import com.project.sangji.common.Pagination;
 import com.project.sangji.model.BoardDTO;
 import com.project.sangji.model.FileDTO;
+import com.project.sangji.service.DataService;
 import com.project.sangji.service.ListService;
 import com.project.sangji.service.NoticeService;
+import com.project.sangji.service.PressService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,16 +28,23 @@ import java.util.List;
 class CustomerController {
     private final ListService ls;
     private final NoticeService ns;
+    private final PressService ps;
+    private final DataService ds;
     private final FileStorage fileStorage;
     List<BoardDTO> dto;
     Pagination pg = new Pagination();
 
     @GetMapping("/cus_page1")
     public void customer1(@RequestParam(defaultValue = "1") int pageNum,
+                          @RequestParam(defaultValue = "title") String searchType,
+                          @RequestParam(defaultValue = "") String keyword,
                           HttpServletRequest request,
                           Model model) {
         pg.setPageNum(pageNum);
         pg.setTableName("notice");
+
+        searchFn(keyword, searchType, pg);
+
 //        System.out.println("table data = " + ns.selectAll(pg));
         int totalCount = ls.totalCount(pg);
         pg.setTotalRecord(totalCount);
@@ -44,10 +55,15 @@ class CustomerController {
 
     @GetMapping("/cus_page2")
     public void customer2(@RequestParam(defaultValue = "1") int pageNum,
+                          @RequestParam(defaultValue = "title") String searchType,
+                          @RequestParam(defaultValue = "") String keyword,
                           HttpServletRequest request,
                           Model model) {
         pg.setPageNum(pageNum);
         pg.setTableName("press");
+
+        searchFn(keyword, searchType, pg);
+
         int totalCount = ls.totalCount(pg);
         pg.setTotalRecord(totalCount);
 //        System.out.println("totalCount = " + totalCount);
@@ -59,10 +75,15 @@ class CustomerController {
 
     @GetMapping("/cus_page3")
     public void customer3(@RequestParam(defaultValue = "1") int pageNum,
+                          @RequestParam(defaultValue = "title") String searchType,
+                          @RequestParam(defaultValue = "") String keyword,
                           HttpServletRequest request,
                           Model model) {
         pg.setPageNum(pageNum);
         pg.setTableName("data");
+
+        searchFn(keyword, searchType, pg);
+
         int totalCount = ls.totalCount(pg);
         pg.setTotalRecord(totalCount);
 
@@ -88,7 +109,7 @@ class CustomerController {
     public String page2View(@PathVariable("no") int no,
                             Model model) {
 
-        model.addAttribute("dto", ns.selectOne(no));
+        model.addAttribute("dto", ps.selectOne(no));
         return "customers/page2_view";
     }
 
@@ -96,7 +117,7 @@ class CustomerController {
     public String page3View(@PathVariable("no") int no,
                             Model model) {
 
-        model.addAttribute("dto", ns.selectOne(no));
+        model.addAttribute("dto", ds.selectOne(no));
         return "customers/page3_view";
     }
 
@@ -117,18 +138,44 @@ class CustomerController {
         return "redirect:/customers/cus_page1";
     }
 
+    @GetMapping("/write_press")
+    public void writePress() {
+    }
+
+    @PostMapping("/write_press")
+    public String writePress(@ModelAttribute BoardDTO dto,
+                             @RequestParam("file") MultipartFile[] files) {
+        List<FileDTO> list = fileStorage.fileUpload(files);
+        if (!list.isEmpty()) {
+            dto.setOfile(list.getFirst().getOFile());
+            dto.setNfile(list.getFirst().getNFile());
+        }
+
+        ps.insert(dto);
+        return "redirect:/customers/cus_page2";
+    }
+
+    @GetMapping("/write_data")
+    public void writeData() {
+    }
+
+    @PostMapping("/write_data")
+    public String writeData(@ModelAttribute BoardDTO dto,
+                            @RequestParam("file") MultipartFile[] files) {
+        List<FileDTO> list = fileStorage.fileUpload(files);
+        if (!list.isEmpty()) {
+            dto.setOfile(list.getFirst().getOFile());
+            dto.setNfile(list.getFirst().getNFile());
+        }
+
+        ds.insert(dto);
+        return "redirect:/customers/cus_page3";
+    }
+
     @GetMapping("/insert")
     public String insert() {
         return "customers/insert";
     }
-//
-//    @PostMapping("/write_press")
-//    public void writePress() {
-//    }
-//
-//    @PostMapping("/write_data")
-//    public void writeData() {
-//    }
 
     @GetMapping("/download/{no}")
     public ResponseEntity<InputStreamResource> download(@PathVariable("no") int no) {
@@ -139,5 +186,14 @@ class CustomerController {
         return ResponseEntity.notFound().build();
     }
 
-
+    public void searchFn(String keyword, String searchType, Pagination pg) {
+        if (keyword != null && !keyword.isEmpty()) {
+            Map<String, String> searchMap = new HashMap<>();
+            searchMap.put("searchType", searchType);
+            searchMap.put("keyword", keyword);
+            pg.setSearchMap(searchMap);
+        } else {
+            pg.setSearchMap(null);
+        }
+    }
 }

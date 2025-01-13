@@ -43,6 +43,12 @@
                          style="height: 3px; width: 100%; background: #1c1c1c; margin-bottom: 20px;"></div>
                     <div class="view_wrap">
                         <h2 th:text="${dto.title}"></h2>
+                        <div class="file_wrap" th:if="${dto.ofile != null}">
+                            <span>첨부파일 :&nbsp; </span>
+                            <a th:href="@{'/customers/download/' + ${dto.no}}">
+                                <strong th:text="${dto.ofile}"></strong>
+                            </a>
+                        </div>
                     </div>
                     <div class="view_content">
                         <p th:text="${dto.content}"></p>

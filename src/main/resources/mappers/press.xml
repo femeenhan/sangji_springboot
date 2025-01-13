@@ -4,23 +4,21 @@
 
 <mapper namespace="com.project.sangji.mapper.PressMapper">
     <select id="selectOne" parameterType="int" resultType="BoardDTO">
-        SELECT P.NO,
-               P.WRITER,
-               P.TITLE,
-               P.CONTENT,
-               P.VISITCOUNT,
-               PF.NFILE,
-               PF.OFILE,
-               DATE(P.REGDATE) AS REGDATE
-        FROM PRESS P
-                 LEFT OUTER JOIN PRESS_FILE PF
-                                 ON P.NO = PF.FILENO
-        WHERE P.NO = #{P.NO}
+        SELECT NO,
+               WRITER,
+               TITLE,
+               CONTENT,
+               VISITCOUNT,
+               OFILE,
+               NFILE,
+               DATE(REGDATE) AS REGDATE
+        FROM PRESS
+        WHERE NO = #{NO}
     </select>
 
     <insert id="insert" parameterType="BoardDTO">
-        INSERT INTO PRESS (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
-        VALUES (#{writer}, #{title}, #{content}, now(), 1)
+        INSERT INTO PRESS (WRITER, TITLE, CONTENT, OFILE, NFILE, REGDATE, VISITCOUNT)
+        VALUES (#{writer}, #{title}, #{content}, null, null, now(), 1)
     </insert>
 
     <update id="update">

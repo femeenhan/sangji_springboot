@@ -4,22 +4,14 @@
 
 <mapper namespace="com.project.sangji.mapper.NoticeMapper">
     <select id="selectOne" parameterType="int" resultType="BoardDTO">
-        SELECT N.NO,
-               N.WRITER,
-               N.TITLE,
-               N.CONTENT,
-               N.VISITCOUNT,
-               NF.NFILE,
-               NF.OFILE, DATE (N.REGDATE) AS REGDATE
-        FROM NOTICE N
-            LEFT OUTER JOIN NOTICE_FILE NF
-        ON N.NO = NF.FILENO
-        WHERE N.NO = #{N.NO}
+        SELECT NO, WRITER, TITLE, CONTENT, OFILE, NFILE, DATE (REGDATE) AS REGDATE, VISITCOUNT
+        FROM NOTICE
+        WHERE NO = #{NO}
     </select>
 
     <insert id="insert" parameterType="BoardDTO">
-        INSERT INTO NOTICE (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
-        VALUES (#{writer}, #{title}, #{content}, now(), 1)
+        INSERT INTO NOTICE (WRITER, TITLE, CONTENT, OFILE, NFILE, REGDATE, VISITCOUNT)
+        VALUES (#{writer}, #{title}, #{content}, null, null, now(), 1)
     </insert>
 
     <update id="update">

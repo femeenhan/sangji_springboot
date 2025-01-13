@@ -46,7 +46,6 @@
                         <div class="file_wrap" th:if="${dto.ofile != null}">
                             <span>첨부파일 :&nbsp; </span>
                             <a th:href="@{'/customers/download/' + ${dto.no}}">
-                                <img src="/images/common/ico_file.png" alt="">
                                 <strong th:text="${dto.ofile}"></strong>
                             </a>
                         </div>

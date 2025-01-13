@@ -4,23 +4,21 @@
 
 <mapper namespace="com.project.sangji.mapper.DataMapper">
     <select id="selectOne" parameterType="int" resultType="BoardDTO">
-        SELECT D.NO,
-               D.WRITER,
-               D.TITLE,
-               D.CONTENT,
-               D.VISITCOUNT,
-               DF.NFILE,
-               DF.OFILE,
-               DATE(D.REGDATE) AS REGDATE
-        FROM DATA D
-                 LEFT OUTER JOIN DATA_FILE DF
-                                 ON D.NO = DF.FILENO
-        WHERE D.NO = #{D.NO}
+        SELECT NO,
+               WRITER,
+               TITLE,
+               CONTENT,
+               VISITCOUNT,
+               OFILE,
+               NFILE,
+               DATE(REGDATE) AS REGDATE
+        FROM DATA
+        WHERE NO = #{D.NO}
     </select>
 
     <insert id="insert" parameterType="BoardDTO">
-        INSERT INTO DATA (WRITER, TITLE, CONTENT, REGDATE, VISITCOUNT)
-        VALUES (#{writer}, #{title}, #{content}, now(), 1)
+        INSERT INTO DATA (WRITER, TITLE, CONTENT, OFILE, NFILE, REGDATE, VISITCOUNT)
+        VALUES (#{writer}, #{title}, #{content}, null, null, now(), 1)
     </insert>
 
     <update id="update">
