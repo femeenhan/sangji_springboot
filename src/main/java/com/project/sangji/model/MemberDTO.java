@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class MemberDTO {
     private String id;
-    private String pass;
+    private String pw;
     private String name;
     private String email;
     private String phone;

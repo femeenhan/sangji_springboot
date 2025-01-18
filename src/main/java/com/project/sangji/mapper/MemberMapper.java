@@ -11,5 +11,9 @@ public interface MemberMapper {
     // 회원가입
     void join(MemberDTO dto);
 
+    // 아이디 중복체크
+    int idCheck(String id);
+
+    MemberDTO login(MemberDTO dto);
 }
 

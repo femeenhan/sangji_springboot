@@ -66,14 +66,14 @@
                         </tbody>
                     </table>
                     <th:block th:utext="${paging}"/>
-                    <div class="btn_wrap">
-                        <button type="submit" class="write admin"
-                                onclick="location.href='/customers/write_notice'">
-                            <!--  th:onclick="|location.href='@{'/customers/' + ${dto.tableName} + '/write/'}'|">-->
-                            <!-- th:onclick="|location.href='@{${'/customers' + link}}'|">-->
-                            공지작성하기
-                        </button>
-                    </div>
+                    <th:block
+                            th:if="${session.user != null and #strings.equals(session.user.isadmin, 'Y')}">
+                        <div class="btn_wrap">
+                            <button type="submit" class="write admin"
+                                    onclick="location.href='/customers/write_notice'"> 공지작성하기
+                            </button>
+                        </div>
+                    </th:block>
                 </div>
             </div>
         </section>

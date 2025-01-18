@@ -79,5 +79,35 @@ window.addEventListener('DOMContentLoaded', function (message) {
             if (e.key === 'Enter') document.getElementById('findIdBtn').click();
         });
     }
+
+    // join 아이디 중복확인
+    const joinEl = document.getElementById("join")
+    if (joinEl) {
+        const checkBtn = document.getElementById("id_check");
+        const idEl = document.getElementById("input_text_id");
+        checkBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            const id = idEl.value;
+            if (id.length == 0) {
+                alert('아이디를 입력하세요');
+                idEl.focus();
+            }
+            fetch(`/rest/idCheck/${id}`, {
+                method: 'GET',
+            }).then(res => {
+                // 요청 성공
+                if (res.ok) {
+                    return res.json();
+                }
+            }).then(result => {
+                if (result == 0) {
+                    if (!confirm(result.message + '사용하시겠습니까?')) {
+                    }
+                } else {
+                    alert(result.message);
+                }
+            })
+        })
+    }
 });
 

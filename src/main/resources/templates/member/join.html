@@ -17,12 +17,15 @@
                 <div class="join_box">
                     <h2 class="join_title">회원 가입</h2>
                     <h3 class="join_msg">회원 가입 페이지입니다.</h3>
-                    <form id="join" class="user_join">
+                    <form id="join" class="user_join" th:fragment="member_update(user)">
                         <div class="join_input">
                             <div class="input_wrap">
                                 <h6>아이디</h6>
                                 <div class="input">
-                                    <input type="text" id="input_text_id" name="id" placeholder="아이디" required>
+                                    <input type="text" id="input_text_id" name="id"
+                                           placeholder="아이디" required
+                                           th:value="${user != null ? user.id : ''}"
+                                           th:readonly="${user != null }">
                                     <input id="id_check" type="button" value="중복확인">
                                     <p id="id_text">영문자, 숫자, 띄어쓰기 없이 3자 이상 입력하세요.</p>
                                 </div>
@@ -30,27 +33,32 @@
                             <div class="input_wrap">
                                 <h6>비밀번호</h6>
                                 <div class="input">
-                                    <input type="password" id="input_pw" name="pw" placeholder="비밀번호" required>
+                                    <input type="password" id="input_pw" name="pw"
+                                           placeholder="비밀번호" required>
                                     <p>영문, 숫자, 특수문자를 포함하여 8자 이상으로 작성해주세요.</p>
                                 </div>
                             </div>
                             <div class="input_wrap">
                                 <h6>비밀번호 확인</h6>
                                 <div class="input">
-                                    <input type="password" id="input_pw_ch" placeholder="비밀번호확인" required>
+                                    <input type="password" id="input_pw_ch" placeholder="비밀번호확인"
+                                           required>
                                 </div>
                             </div>
                             <div class="input_wrap">
                                 <h6>이름</h6>
                                 <div class="input">
-                                    <input type="text" id="input_name" name="name" placeholder="이름" required>
+                                    <input type="text" id="input_name" name="name" placeholder="이름"
+                                           required>
                                 </div>
                             </div>
                             <div class="input_wrap">
                                 <h6>E-Mail</h6>
                                 <div class="input">
-                                    <input type="text" id="input_email" name="email" placeholder="이메일을 입력하세요" required/>
-                                    <input type="text" name="email_" title="이메일" autocomplete="off" required/>
+                                    <input type="text" id="input_email" name="email"
+                                           placeholder="이메일을 입력하세요" required/>
+                                    <input type="text" name="email_" title="이메일" autocomplete="off"
+                                           required/>
                                     <div class="sel_option">
                                         <select name="domain" title="이메일 도메인">
                                             <option value="">이메일선택</option>
@@ -74,7 +82,8 @@
                             <div class="input_wrap">
                                 <h6>휴대폰번호</h6>
                                 <div class="input">
-                                    <input type="text" id="input_phone" name="phone" placeholder="휴대폰번호" required>
+                                    <input type="text" id="input_phone" name="phone"
+                                           placeholder="휴대폰번호" required>
                                 </div>
                             </div>
                             <div class="input_wrap">
@@ -102,13 +111,16 @@
                                 <h6>주소</h6>
                                 <div class="input address">
                                     <div>
-                                        <input type="text" id="zoneCode" name="zipcode" placeholder="우편번호" required>
+                                        <input type="text" id="zoneCode" name="zipcode"
+                                               placeholder="우편번호" required>
                                         <input type="button" id="click_post" value="주소 검색">
                                     </div>
                                     <div>
-                                        <input class="margin20" type="text" id="address" name="addr1" placeholder="기본주소"
+                                        <input class="margin20" type="text" id="address"
+                                               name="addr1" placeholder="기본주소"
                                                required>
-                                        <input class="margin20 address" type="text" name="addr2" placeholder="상세주소"
+                                        <input class="margin20 address" type="text" name="addr2"
+                                               placeholder="상세주소"
                                                required>
                                     </div>
                                 </div>
@@ -124,11 +136,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="btn_wrap">
+                            <button class="save">저장
+                            </button>
+                            <button class="cancel" type="submit"
+                                    onclick="location.href='/member/login_main'">취소
+                            </button>
+                        </div>
                     </form>
-                    <div class="btn_wrap">
-                        <button class="save" onclick="location.href='/member/login_main'">저장</button>
-                        <button class="cancel" type="submit" onclick="location.href='/member/login_main'">취소</button>
-                    </div>
                 </div>
             </div>
         </div>
