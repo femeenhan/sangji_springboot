@@ -11,8 +11,8 @@
 
     <insert id="join">
         INSERT INTO MEMBER
-        VALUES (#{ID}, #{PW}, #{NAME}, #{EMAIL}, #{PHONE}, #{BIRTH}, #{ZIPCODE}, #{ADDR1},
-                #{ADDR2}, #{REGDATE}, #{ISADMIN})
+        VALUES (#{id}, #{pw}, #{name}, #{email}, #{phone}, #{birth}, #{zipcode}, #{addr1},
+                #{addr2}, #{regdate}, #{isAdmin})
     </insert>
 
     <select id="login" resultType="MemberDTO" parameterType="MemberDTO">

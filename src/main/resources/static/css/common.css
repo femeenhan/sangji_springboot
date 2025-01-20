@@ -1195,6 +1195,13 @@ caption.nohead {
     transform: translate(0, 0) rotate(0);
 }
 
+/* 날짜 선택 - datepicker*/
+#datepicker {
+    height: 40px;
+    width: 300px;
+    border: 1px solid rgba(35, 47, 62, 0.3);
+}
+
 @media (max-width: 1200px) {
     .board_list th {
         height: 50px;

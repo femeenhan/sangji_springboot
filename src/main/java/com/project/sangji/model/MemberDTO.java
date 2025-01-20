@@ -15,10 +15,10 @@ public class MemberDTO {
     private String name;
     private String email;
     private String phone;
-    private Date birth;
+    private String birth;
     private String zipcode;
     private String addr1;
     private String addr2;
-    private String regdate;
-    private String isAdmin;
+    private Date regdate;
+    private Character isAdmin;
 }
