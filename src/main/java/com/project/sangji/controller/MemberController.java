@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -36,22 +33,24 @@ public class MemberController {
     @PostMapping("/join_insert")
     public String joinInsert(@ModelAttribute MemberDTO dto, Model model) {
         ms.join(dto);
-        System.out.println("ok");
-        return "redirect:/member/join_result";
+        model.addAttribute("name", dto.getName());
+        return "/member/join_result";
     }
 
-    // 회원가입 결과 페이지
-    @GetMapping("/join_result")
-    public void joinResult(String name, Model model) {
-        System.out.println(dto.getId());
-        model.addAttribute("name", dto.getName());
+    // 로그인 페이지 이동
+    @GetMapping("/login_main")
+    public void loginMain(Model model) {
     }
 
     // 로그인 하기 & 세션에 로그인 정보 담기
-    @GetMapping("/login_main")
-    public void loginMain(String id, String pw, HttpSession session,
-                          RedirectAttributes redirectAttributes) {
-
+    @PostMapping("/loginOk")
+    public void loginMain(@RequestParam("id") String id,
+                          @RequestParam("pw") String pw, Model model) {
+        int loginResult = ms.login(id, pw);
+        if (loginResult == 1) {
+            MemberDTO dto = new MemberDTO();
+            System.out.println(dto.toString());
+        }
     }
 
     // 로그인 정보 찾기

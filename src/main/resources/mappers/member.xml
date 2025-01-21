@@ -6,7 +6,8 @@
     <select id="idCheck" resultType="int" parameterType="String">
         SELECT count(*)
         from MEMBER
-        where ID = #{ID}
+        where id = #{id}
+        order by regdate desc
     </select>
 
     <insert id="join">
@@ -15,12 +16,11 @@
                 #{addr2}, #{regdate}, #{isAdmin})
     </insert>
 
-    <select id="login" resultType="MemberDTO" parameterType="MemberDTO">
-        SELECT *
+    <select id="login" resultType="int" parameterType="String">
+        SELECT count(*)
         FROM MEMBER
-        WHERE 1 = 1
-          AND ID = #{ID}
-          AND PW = #{PW}
+        WHERE id = #{id}
+          AND pw = #{pw}
     </select>
 
 </mapper>

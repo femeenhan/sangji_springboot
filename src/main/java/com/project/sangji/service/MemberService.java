@@ -18,11 +18,8 @@ public class MemberService {
         memberMapper.join(dto);
     }
 
-    public MemberDTO login(String id, String pw) {
-        MemberDTO dto = new MemberDTO();
-        dto.setId(id);
-        dto.setPw(pw);
-        return memberMapper.login(dto);
+    public int login(String id, String pw) {
+        return memberMapper.login(id, pw);
     }
 
 }

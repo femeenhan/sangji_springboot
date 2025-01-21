@@ -14,6 +14,6 @@ public interface MemberMapper {
     // 아이디 중복체크
     int idCheck(String id);
 
-    MemberDTO login(MemberDTO dto);
+    int login(String id, String pw);
 }
 

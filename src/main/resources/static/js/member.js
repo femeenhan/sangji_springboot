@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function (message) {
                 alert('비밀번호를 입력하세요');
                 pwEl.focus();
             } else {
-                if (id === 'admin' && pw === '1') {
+                if (id === ${id} && pw === ${pw}) {
                     location.href = '/';
                 } else {
                     alert('가입정보가 없습니다.');
@@ -85,6 +85,7 @@ window.addEventListener('DOMContentLoaded', function (message) {
 
     // join 아이디 중복확인
     const joinEl = document.getElementById("join")
+    let idCheckNum = 0;
     if (joinEl) {
         const checkBtn = document.getElementById("id_check");
         const idEl = document.getElementById("input_text_id");
@@ -94,21 +95,30 @@ window.addEventListener('DOMContentLoaded', function (message) {
             if (id.length == 0) {
                 alert('아이디를 입력하세요');
                 idEl.focus();
+                return;
             }
             fetch(`/rest/idCheck/${id}`, {
                 method: 'GET',
-            }).then(res => {
+            }).then(response => {
                 // 요청 성공
-                if (res.ok) {
-                    return res.json();
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('서버 응답에 문제가 있습니다.');
                 }
             }).then(result => {
-                if (result == 0) {
-                    if (!confirm(result.message + '사용하시겠습니까?')) {
+                if (result.status === "0") {
+                    idCheckNum++;
+                    console.log(idCheckNum);
+                    if (!confirm(result.message)) {
+                        idCheckNum = 0;
                     }
                 } else {
-                    alert(result.message);
+                    alert('사용 중인 아이디입니다. 다른 아이디를 입력하세요.');
                 }
+            }).catch(error => {
+                console.log('에러 발생:', error);
+                alert('아이디 확인 중 문제가 발생했습니다.');
             })
         })
     }
@@ -174,5 +184,59 @@ window.addEventListener('DOMContentLoaded', function (message) {
         postcode();
         document.getElementById("address2").focus();
     })
+
+
+    const saveBtn = document.querySelector(".btn_wrap .save");
+    if (saveBtn) {
+        saveBtn.addEventListener("keyup", function (e) {
+            if (e.key === "Enter")
+                document.querySelector(".btn_wrap .save").click();
+        })
+    }
+
+    // join ok
+    joinEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // 아이디 중복체크 확인
+        if (idCheckNum == 0) {
+            alert('아이디 중복체크를 해주세요');
+            return;
+        }
+        // 비밀번호 확인
+        const pwEl = document.getElementById('input_pw').value.trim();
+        const pwChEl = document.getElementById('input_pw_ch').value.trim();
+        if (pwEl != pwChEl) {
+            alert('같은 비밀번호를 입력해주세요');
+            return;
+        }
+        // 이메일 형식 확인
+        const emailEl = document.getElementById('input_email').value.trim();
+        //     ^ (== 시작/^), [^\s@]+ (== 공백 문자와 @를 제외한 한 글자 이상의 연속된 문자)
+        //     @ (== @반드시 포함), [^\s@]+ (== @를 제외한 한 글자 이상의 연속된 문자)
+        //     \. (== . 이후), [^\s@]+ (== 역시 공백 문자와 @를 제외한 문자), $ (== 이렇게 끝나야 함)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailEl)) {
+            alert('올바른 이메일 형식을 입력해주세요');
+            return;
+        }
+        // 휴대폰 번호 형식 확인
+        const phone = document.getElementById('input_phone').value.trim();
+        const phoneRegex = /^(010[-.\s]?\d{4}[-.\s]?\d{4}|01[16789][-.\s]?\d{3,4}[-.\s]?\d{4})$/;
+        if (!phoneRegex.test(phone)) {
+            alert("휴대폰 번호 형식이 올바르지 않습니다.");
+            return;
+        }
+        // 입력 데이터 전송
+        const formData = new FormData(this);
+        // memberDTO에 들어갈 수 있는 json 타입만 추출
+        const jsonData = Object.fromEntries(formData.entries());
+
+        // 회원정보 수정
+
+
+    })
+
+    // 로그인
+
 });
 

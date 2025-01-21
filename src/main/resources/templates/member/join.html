@@ -21,13 +21,14 @@
                 <div class="join_box">
                     <h2 class="join_title">회원 가입</h2>
                     <h3 class="join_msg">회원 가입 페이지입니다.</h3>
-                    <form id="join" class="user_join" action="/member/join_insert" method="post">
+                    <form id="join" class="user_join" th:action="@{/member/join_insert}"
+                          method="post">
                         <div class="join_input">
                             <div class="input_wrap">
                                 <h6>아이디</h6>
                                 <div class="input">
                                     <input type="text" id="input_text_id" name="id"
-                                           placeholder="아이디" required>
+                                           placeholder="아이디" required autocomplete="off">
                                     <input id="id_check" type="button" value="중복확인">
                                     <p id="id_text">영문자, 숫자, 띄어쓰기 없이 3자 이상 입력하세요.</p>
                                 </div>
@@ -51,7 +52,7 @@
                                 <h6>이름</h6>
                                 <div class="input">
                                     <input type="text" id="input_name" name="name" placeholder="이름"
-                                           required>
+                                           required autocomplete="off">
                                 </div>
                             </div>
                             <div class="input_wrap">
@@ -80,21 +81,22 @@
                             <div class="input_wrap">
                                 <h6 class="none">전화번호</h6>
                                 <div class="input">
-                                    <input type="text" name="tel" placeholder="전화번호">
+                                    <input type="text" name="tel" placeholder="전화번호"
+                                           autocomplete="off">
                                 </div>
                             </div>
                             <div class="input_wrap">
                                 <h6>휴대폰번호</h6>
                                 <div class="input">
                                     <input type="text" id="input_phone" name="phone"
-                                           placeholder="휴대폰번호" required>
+                                           placeholder="휴대폰번호" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="input_wrap">
                                 <h6>생년월일</h6>
                                 <div class="input_select">
                                     <input type="text" id="datepicker" name="birth"
-                                           placeholder="생년월일을 입력하세요">
+                                           placeholder="생년월일을 입력하세요" autocomplete="off">
                                 </div>
                             </div>
                             <div class="input_wrap">
@@ -102,13 +104,13 @@
                                 <div class="input address">
                                     <div>
                                         <input type="text" id="zipcode" name="zipcode"
-                                               placeholder="우편번호" required>
+                                               placeholder="우편번호" required readonly>
                                         <input type="button" id="click_post" value="우편번호검색">
                                     </div>
                                     <div>
                                         <input type="text" id="address1"
                                                name="addr1" placeholder="기본주소"
-                                               required>
+                                               required readonly>
                                         <input type="text" id="address2" name="addr2"
                                                placeholder="상세주소"
                                                required>
@@ -125,7 +127,7 @@
                             </div>
                         </div>
                         <div class="btn_wrap">
-                            <button class="save" onclick="location.href='/member/join_result'">저장
+                            <button class="save" type="submit">저장
                             </button>
                             <button class="cancel" type="submit"
                                     onclick="location.href='/member/login_main'">취소
