@@ -53,18 +53,29 @@
         <div class="header_btn_wrap">
             <div class="linked">
                 <a href="#">
-                    <img src="/images/sns_link.svg" alt="link" />
+                    <img src="/images/sns_link.svg" alt="link"/>
                 </a>
             </div>
             <div class="search">
                 <a href="#">
-                    <img src="/images/search.svg" alt="link" />
+                    <img src="/images/search.svg" alt="link"/>
                 </a>
             </div>
             <div class="login">
-                <a href="/member/login_main">
-                    <img src="/images/common/person.svg" alt="login" />
+                <a th:href="${session.user != null ? '/member/user_info' : '/member/login_main'}">
+                    <img src="/images/common/person.svg" alt="login"/>
                 </a>
+            </div>
+            <div th:if="${session.user != null}" class="logout">
+                <a href="#" onclick="logoutConfirm()">
+                    <img src="/images/common/logout.svg" alt="logout"/>
+                </a>
+                <script>
+                    function logoutConfirm() {
+                        confirm("로그아웃 하시겠습니까?");
+                        location.href = "/member/logout";
+                    }
+                </script>
             </div>
             <div class="lang_wrap">
                 <button type="button" class="lang_btn">ENG</button>

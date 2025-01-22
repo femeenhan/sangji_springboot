@@ -150,5 +150,85 @@ window.addEventListener("DOMContentLoaded", function () {
             pagingEl.classList.add('.active');
         })
     }
+}); // DOMContentLoaded
 
-});
+function showLoading(isShow) {
+    // 로딩 동적으로 생성
+    const container = document.getElementById('container');
+    let loadingBar = container.querySelector('#customLoading');
+
+    if (!loadingBar) {
+        loadingBar = document.createElement('img');
+        loadingBar.src = '/images/common/loading.svg';
+        loadingBar.alt = '로딩 중...';
+        loadingBar.id = 'customLoading';
+        loadingBar.style.position = 'fixed';
+        loadingBar.style.top = '50%';
+        loadingBar.style.left = '50%';
+        loadingBar.style.transform = 'translate(-50%, -50%)';
+        loadingBar.style.zIndex = '99999';
+        loadingBar.style.display = 'block';
+
+        // 로딩 영역에 추가
+        container.appendChild(loadingBar);
+
+        // 오버레이 생성
+        const overlay = document.createElement('div');
+        overlay.id = 'loadingOverlay';
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+        overlay.style.zIndex = '99998'; // 로딩바보다 낮게
+        overlay.style.display = 'none'; // 처음에는 숨김
+
+        // 오버레이 추가
+        container.appendChild(overlay);
+    }
+
+    // 로딩 영역에 추가
+    loadingBar.style.display = isShow ? 'block' : 'none';
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = isShow ? 'block' : 'none';
+
+    // 키 입력 차단 및 클릭 이벤트 차단
+    if (isShow) {
+        window.onkeydown = function (e) {
+            e.preventDefault();
+        };
+        overlay.onclick = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        };
+        overlay.onwheel = function (e) {
+            e.preventDefault();
+        };
+    } else {
+        // 키 입력 및 클릭 이벤트 복원
+        window.onkeydown = null;
+        overlay.onclick = null;
+        overlay.onwheel = null;
+    }
+}
+
+function fetchCall(url, reqData, method, callback) {
+    showLoading(true);
+    let _method = "POST";
+    if (method) method = _method;
+    // 설정
+    options = {
+        method: method,
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqData),
+    }
+
+    fetch(url, options)
+        .then((res) => res.json())
+        .then((data) => callback(data))
+        .then((err) => console.log(err))
+        .finally(() => showLoading(false));
+}

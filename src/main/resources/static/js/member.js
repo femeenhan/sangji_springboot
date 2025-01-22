@@ -21,22 +21,18 @@ window.addEventListener('DOMContentLoaded', function (message) {
             const id = idEl.value.trim();
             const pw = pwEl.value.trim();
 
-            if (id.length <= 0) {
+            if (id.length == 0) {
                 alert('아이디를 입력하세요');
                 idEl.focus();
-            } else if (pw.length <= 0) {
+            } else if (pw.length == 0) {
                 alert('비밀번호를 입력하세요');
                 pwEl.focus();
-            } else {
-                if (id === ${id} && pw === ${pw}) {
-                    location.href = '/';
-                } else {
-                    alert('가입정보가 없습니다.');
-                    idEl.focus();
-                }
             }
+
         })
     }
+
+    // 로그아웃 확인 (html 안에 script)
 
     // 아이디, 비밀번호 엔터키 이벤트 (로그인)
     const idEnter = document.querySelector('.login_info input[name=id]');
@@ -109,7 +105,7 @@ window.addEventListener('DOMContentLoaded', function (message) {
             }).then(result => {
                 if (result.status === "0") {
                     idCheckNum++;
-                    console.log(idCheckNum);
+                    // console.log(idCheckNum);
                     if (!confirm(result.message)) {
                         idCheckNum = 0;
                     }
@@ -194,49 +190,66 @@ window.addEventListener('DOMContentLoaded', function (message) {
         })
     }
 
-    // join ok
-    joinEl.addEventListener('submit', function (e) {
-        e.preventDefault();
-        // 아이디 중복체크 확인
-        if (idCheckNum == 0) {
-            alert('아이디 중복체크를 해주세요');
-            return;
-        }
-        // 비밀번호 확인
-        const pwEl = document.getElementById('input_pw').value.trim();
-        const pwChEl = document.getElementById('input_pw_ch').value.trim();
-        if (pwEl != pwChEl) {
-            alert('같은 비밀번호를 입력해주세요');
-            return;
-        }
-        // 이메일 형식 확인
-        const emailEl = document.getElementById('input_email').value.trim();
-        //     ^ (== 시작/^), [^\s@]+ (== 공백 문자와 @를 제외한 한 글자 이상의 연속된 문자)
-        //     @ (== @반드시 포함), [^\s@]+ (== @를 제외한 한 글자 이상의 연속된 문자)
-        //     \. (== . 이후), [^\s@]+ (== 역시 공백 문자와 @를 제외한 문자), $ (== 이렇게 끝나야 함)
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailEl)) {
-            alert('올바른 이메일 형식을 입력해주세요');
-            return;
-        }
-        // 휴대폰 번호 형식 확인
-        const phone = document.getElementById('input_phone').value.trim();
-        const phoneRegex = /^(010[-.\s]?\d{4}[-.\s]?\d{4}|01[16789][-.\s]?\d{3,4}[-.\s]?\d{4})$/;
-        if (!phoneRegex.test(phone)) {
-            alert("휴대폰 번호 형식이 올바르지 않습니다.");
-            return;
-        }
-        // 입력 데이터 전송
-        const formData = new FormData(this);
-        // memberDTO에 들어갈 수 있는 json 타입만 추출
-        const jsonData = Object.fromEntries(formData.entries());
+    // join 항목 검토 (이메일 형식은 추가 확인 필요)
+    // joinEl.addEventListener('submit', function (e) {
+    //     e.preventDefault();
+    //     // 아이디 중복체크 확인
+    //     if (idCheckNum == 0 && location.pathname.startsWith('/join')) {
+    //         alert('아이디 중복체크를 해주세요');
+    //         return;
+    //     }
+    //     // 비밀번호 확인
+    //     const pwEl = document.getElementById('input_pw').value.trim();
+    //     const pwChEl = document.getElementById('input_pw_ch').value.trim();
+    //     if (pwEl != pwChEl) {
+    //         alert('같은 비밀번호를 입력해주세요');
+    //         return;
+    //     }
+    //     // 이메일 형식 확인
+    //     // const emailEl = document.getElementById('input_email').value.trim();
+    //     //     ^ (== 시작/^), [^\s@]+ (== 공백 문자와 @를 제외한 한 글자 이상의 연속된 문자)
+    //     //     @ (== @반드시 포함), [^\s@]+ (== @를 제외한 한 글자 이상의 연속된 문자)
+    //     //     \. (== . 이후), [^\s@]+ (== 역시 공백 문자와 @를 제외한 문자), $ (== 이렇게 끝나야 함)
+    //     // const emailRegex = /^[^\s@]/;
+    //     // if (!emailRegex.test(emailEl)) {
+    //     //     alert('올바른 이메일 형식을 입력해주세요');
+    //     //     return;
+    //     // }
+    //     // 휴대폰 번호 형식 확인
+    //     const phone = document.getElementById('input_phone').value.trim();
+    //     const phoneRegex = /^(010[-.\s]?\d{4}[-.\s]?\d{4}|01[16789][-.\s]?\d{3,4}[-.\s]?\d{4})$/;
+    //     if (!phoneRegex.test(phone)) {
+    //         alert("휴대폰 번호 형식이 올바르지 않습니다.");
+    //         return;
+    //     }
+    //     // 입력 데이터 전송
+    //     const formData = new FormData(this);
+    //     // memberDTO에 들어갈 수 있는 json 타입만 추출
+    //     const jsonData = Object.fromEntries(formData.entries());
+    //
+    //     let _url = "/member/join_insert";
+    //     if (location.pathname.startsWith('/member/user_info_update')) {
+    //         _url = "/member/user_info_update";
+    //     }
+    //
+    //     // Post 방식으로 서버와 비동기 통신 함수
+    //     fetchCall(_url, 'POST', jsonData, function (data) {
+    //         if (data.status === "OK") {
+    //             // 회원수정
+    //             if (location.pathname.startsWith('/member/user_info_update')) {
+    //                 alert(data.message);
+    //                 // 회원가입
+    //             } else {
+    //                 location.href = '/member/join_result';
+    //             }
+    //         } else {
+    //             alert('잠시 후 다시 시도하시거나 \n관리자에게 문의하세요.');
+    //         }
+    //     })
+    // })
 
-        // 회원정보 수정
+    // 회원정보 수정
 
-
-    })
-
-    // 로그인
 
 });
 

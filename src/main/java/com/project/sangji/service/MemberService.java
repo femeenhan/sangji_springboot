@@ -18,7 +18,11 @@ public class MemberService {
         memberMapper.join(dto);
     }
 
-    public int login(String id, String pw) {
+    public MemberDTO loginPwCheck(String id) {
+        return memberMapper.loginPwCheck(id);
+    }
+
+    public MemberDTO login(String id, String pw) {
         return memberMapper.login(id, pw);
     }
 

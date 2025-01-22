@@ -16,8 +16,14 @@
                 #{addr2}, #{regdate}, #{isAdmin})
     </insert>
 
-    <select id="login" resultType="int" parameterType="String">
-        SELECT count(*)
+    <select id="loginPwCheck" resultType="MemberDTO" parameterType="MemberDTO">
+        SELECT *
+        FROM MEMBER
+        WHERE id = #{id}
+    </select>
+
+    <select id="login" resultType="MemberDTO" parameterType="MemberDTO">
+        SELECT *
         FROM MEMBER
         WHERE id = #{id}
           AND pw = #{pw}

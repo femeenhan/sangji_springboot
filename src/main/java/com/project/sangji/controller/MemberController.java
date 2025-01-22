@@ -17,7 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
     private final MemberService ms;
     MemberDTO dto = new MemberDTO();
-    // @RequiredArgsConstructor 대신 사용하려면,
+    // @RequiredArgsConstructor
+    // 대신 사용하려면,
 //    private MemberService ms;
 //    @Autowired
 //    public MemberController(MemberService ms){
@@ -34,7 +35,7 @@ public class MemberController {
     public String joinInsert(@ModelAttribute MemberDTO dto, Model model) {
         ms.join(dto);
         model.addAttribute("name", dto.getName());
-        return "/member/join_result";
+        return "member/join_result";
     }
 
     // 로그인 페이지 이동
@@ -42,14 +43,35 @@ public class MemberController {
     public void loginMain(Model model) {
     }
 
+    // 로그인 상태에서 회원정보 페이지 이동
+    @GetMapping("/user_info")
+    public void userInfo(Model model) {
+
+    }
+
     // 로그인 하기 & 세션에 로그인 정보 담기
     @PostMapping("/loginOk")
-    public void loginMain(@RequestParam("id") String id,
-                          @RequestParam("pw") String pw, Model model) {
-        int loginResult = ms.login(id, pw);
-        if (loginResult == 1) {
-            MemberDTO dto = new MemberDTO();
-            System.out.println(dto.toString());
+    public String loginMain(@RequestParam("id") String id,
+                            @RequestParam("pw") String pw, Model model,
+                            HttpSession session,
+                            RedirectAttributes rttr) {
+        MemberDTO pwCheck = ms.loginPwCheck(id);
+        System.out.println(pwCheck.toString());
+        MemberDTO user = ms.login(id, pw);
+        System.out.println(user.toString());
+        if (pwCheck.getId() == null) {
+            rttr.addFlashAttribute("message", "가입된 아이디가 아닙니다. 먼저 회원가입을 하세요.");
+            return "redirect:/login_main";
+        } else if (user.getId().equals(id) && !user.getPw().equals(pw)) {
+            rttr.addFlashAttribute("message", "비밀번호가 틀렸습니다.");
+            return "redirect:/login_main";
+        } else if (user != null) {
+            session.setAttribute("user", user);
+            session.setMaxInactiveInterval(1800);
+            return "redirect:/";
+        } else {
+            rttr.addFlashAttribute("message", "아이디와 비밀번호가 일치하지 않습니다.");
+            return "redirect:/login_main";
         }
     }
 
@@ -58,5 +80,11 @@ public class MemberController {
     public void loginFindInfo() {
     }
 
+    // 로그아웃
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 
 }

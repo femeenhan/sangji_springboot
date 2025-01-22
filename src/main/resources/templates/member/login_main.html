@@ -17,21 +17,23 @@
                 <div class="login_box">
                     <h2 class="login_title">로그인 페이지</h2>
                     <h3 class="login_msg">로그인 페이지입니다.</h3>
-                    <form class="login_area" id="login" action="/member/loginOk" method="post">
+                    <form class="login_area" id="login" th:action="@{/member/loginOk}"
+                          method="post">
                         <div class="login_info">
                             <input type="text" name="id" placeholder="아이디">
-                            <input type="password" name="pass" placeholder="비밀번호">
+                            <input type="password" name="pw" placeholder="비밀번호">
                         </div>
                         <div class="btn_wrap">
-                            <button type="button" id="memberLoginBtn">로그인
+                            <button type="submit" id="memberLoginBtn"
+                                    onclick="location.href='/member/loginOk'">로그인
                             </button>
                         </div>
                         <div class="login_save">
                             <input type="checkbox" id="saveId" name="" value="y">
                             <label for="saveId">아이디 저장</label>
                         </div>
+                        <div class="login_message" th:if="${message}" th:text="${message}"></div>
                     </form>
-
                     <div class="login_btns">
                         <button type="button" onclick="location.href='/member/join'">가입하기</button>
                         <button type="button" onclick="location.href='/member/login_find_info'"
