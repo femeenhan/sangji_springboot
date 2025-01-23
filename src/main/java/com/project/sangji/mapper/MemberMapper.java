@@ -17,5 +17,7 @@ public interface MemberMapper {
     MemberDTO loginPwCheck(String id);
 
     MemberDTO login(String id, String pw);
+
+    void updateMember(MemberDTO dto);
 }
 

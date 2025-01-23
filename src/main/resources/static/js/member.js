@@ -1,7 +1,8 @@
 window.addEventListener('DOMContentLoaded', function (message) {
     const loginBtnEl = document.querySelector('.header_btn_wrap .login');
 
-    document.querySelector('input[name=id]')?.focus();
+    // document.querySelector('input[name=id]')?.focus();
+    document.querySelector('input[name=username]')?.focus();
     document.querySelector('input[name=person_name]')?.focus();
 
     // if (loginBtnEl) {
@@ -16,27 +17,51 @@ window.addEventListener('DOMContentLoaded', function (message) {
     const loginEl = document.getElementById('memberLoginBtn');
     if (loginEl) {
         loginEl.addEventListener('click', function () {
-            const idEl = document.querySelector('.login_info input[name=id]');
-            const pwEl = document.querySelector('.login_info input[name=pass]');
+            // const idEl = document.querySelector('.login_info input[name=id]');
+            // const pwEl = document.querySelector('.login_info input[name=pass]');
+            const idEl = document.querySelector('.login_info input[name=username]');
+            const pwEl = document.querySelector('.login_info input[name=password]');
             const id = idEl.value.trim();
             const pw = pwEl.value.trim();
 
             if (id.length == 0) {
                 alert('아이디를 입력하세요');
                 idEl.focus();
+                return false;
             } else if (pw.length == 0) {
                 alert('비밀번호를 입력하세요');
                 pwEl.focus();
+                return false;
             }
+            return true;
+        })
+    }
 
+    const idFeild = document.getElementById('id');
+    const saveIdCheckBox = document.getElementById('saveId');
+    if (saveIdCheckBox) {
+        const savedId = localStorage.getItem('savedId');
+        if (savedId) {
+            idFeild.value = savedId;
+            saveIdCheckBox.checked = true;
+        }
+
+        saveIdCheckBox.addEventListener('change', function () {
+            if (this.checked) {
+                localStorage.setItem('savedId', idFeild.value);
+            } else {
+                localStorage.removeItem('savedId');
+            }
         })
     }
 
     // 로그아웃 확인 (html 안에 script)
 
     // 아이디, 비밀번호 엔터키 이벤트 (로그인)
-    const idEnter = document.querySelector('.login_info input[name=id]');
-    const passEnter = document.querySelector('.login_info input[name=pass]');
+    // const idEnter = document.querySelector('.login_info input[name=id]');
+    // const passEnter = document.querySelector('.login_info input[name=pass]');
+    const idEl = document.querySelector('.login_info input[name=username]');
+    const pwEl = document.querySelector('.login_info input[name=password]');
 
     if (idEnter) {
         idEnter.addEventListener('keyup', function (e) {
@@ -46,7 +71,6 @@ window.addEventListener('DOMContentLoaded', function (message) {
     if (passEnter) {
         passEnter.addEventListener('keyup', function (e) {
             if (e.key === 'Enter') document.getElementById('memberLoginBtn').click();
-
         })
     }
 
@@ -121,31 +145,56 @@ window.addEventListener('DOMContentLoaded', function (message) {
 
     // 이메일 주소 Select
     const domainEl = document.getElementById('email_domain');
-    if (domainEl) {
+    const emailInput = document.getElementById('input_email');
+    const emailAddressInput = document.getElementById('email_address');
+
+    if (domainEl && emailInput && emailAddressInput) {
         domainEl.addEventListener('change', function () {
-            const emailInput = document.getElementById('email_address');
             const selectedDomain = this.value;
-            if (emailInput !== '') {
-                emailInput.value = '@' + selectedDomain;
+            if (selectedDomain === '') {
+                emailAddressInput.value = '';
+                emailAddressInput.readOnly = false;
             } else if (selectedDomain === '직접입력') {
-                emailInput.value = '';
-                emailInput.focus();
+                emailAddressInput.value = '';
+                emailAddressInput.readOnly = false;
+                emailAddressInput.focus();
             } else {
-                emailInput.value = '';
+                emailAddressInput.value = '@' + selectedDomain;
+                emailAddressInput.readOnly = true;
             }
-        })
+        });
+
+        // 이메일 입력값 합치기
+        emailInput.addEventListener('input', function () {
+            const fullEmail = emailInput.value + emailAddressInput.value;
+            const hiddenEmailInput = document.createElement('input');
+            hiddenEmailInput.type = 'hidden';
+            hiddenEmailInput.name = 'email';
+            hiddenEmailInput.value = fullEmail;
+            emailInput.parentNode.appendChild(hiddenEmailInput);
+        });
+
+        emailAddressInput.addEventListener('input', function () {
+            const fullEmail = emailInput.value + emailAddressInput.value;
+            const hiddenEmailInput = document.querySelector('input[type="hidden"][name="email"]');
+            if (hiddenEmailInput) {
+                hiddenEmailInput.value = fullEmail;
+            }
+        });
     }
 
     // 생년월일 Select
-    flatpickr("#datepicker", {
-        locale: "ko",
-        enableTime: false,
-        dateFormat: "Y-m-d",
-        maxDate: "today",
-    })
+    if (document.getElementById('datepicker')) {
+        flatpickr("#datepicker", {
+            locale: "ko",
+            enableTime: false,
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+        });
+    }
 
     // postcode API
-    function postcode() {
+    window.postcode = function () {
         new daum.Postcode({
             oncomplete: function (data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -172,15 +221,18 @@ window.addEventListener('DOMContentLoaded', function (message) {
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('zipcode').value = data.zonecode;
                 document.getElementById('address1').value = roadAddr;
-            },
+                document.getElementById('address2').focus();
+            }
         }).open();
     }
 
-    document.getElementById("click_post").addEventListener("click", function () {
-        postcode();
-        document.getElementById("address2").focus();
-    })
-
+    const postButton = document.getElementById("click_post");
+    if (postButton) {
+        postButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            postcode();
+        });
+    }
 
     const saveBtn = document.querySelector(".btn_wrap .save");
     if (saveBtn) {
@@ -191,62 +243,72 @@ window.addEventListener('DOMContentLoaded', function (message) {
     }
 
     // join 항목 검토 (이메일 형식은 추가 확인 필요)
-    // joinEl.addEventListener('submit', function (e) {
-    //     e.preventDefault();
-    //     // 아이디 중복체크 확인
-    //     if (idCheckNum == 0 && location.pathname.startsWith('/join')) {
-    //         alert('아이디 중복체크를 해주세요');
-    //         return;
-    //     }
-    //     // 비밀번호 확인
-    //     const pwEl = document.getElementById('input_pw').value.trim();
-    //     const pwChEl = document.getElementById('input_pw_ch').value.trim();
-    //     if (pwEl != pwChEl) {
-    //         alert('같은 비밀번호를 입력해주세요');
-    //         return;
-    //     }
-    //     // 이메일 형식 확인
-    //     // const emailEl = document.getElementById('input_email').value.trim();
-    //     //     ^ (== 시작/^), [^\s@]+ (== 공백 문자와 @를 제외한 한 글자 이상의 연속된 문자)
-    //     //     @ (== @반드시 포함), [^\s@]+ (== @를 제외한 한 글자 이상의 연속된 문자)
-    //     //     \. (== . 이후), [^\s@]+ (== 역시 공백 문자와 @를 제외한 문자), $ (== 이렇게 끝나야 함)
-    //     // const emailRegex = /^[^\s@]/;
-    //     // if (!emailRegex.test(emailEl)) {
-    //     //     alert('올바른 이메일 형식을 입력해주세요');
-    //     //     return;
-    //     // }
-    //     // 휴대폰 번호 형식 확인
-    //     const phone = document.getElementById('input_phone').value.trim();
-    //     const phoneRegex = /^(010[-.\s]?\d{4}[-.\s]?\d{4}|01[16789][-.\s]?\d{3,4}[-.\s]?\d{4})$/;
-    //     if (!phoneRegex.test(phone)) {
-    //         alert("휴대폰 번호 형식이 올바르지 않습니다.");
-    //         return;
-    //     }
-    //     // 입력 데이터 전송
-    //     const formData = new FormData(this);
-    //     // memberDTO에 들어갈 수 있는 json 타입만 추출
-    //     const jsonData = Object.fromEntries(formData.entries());
-    //
-    //     let _url = "/member/join_insert";
-    //     if (location.pathname.startsWith('/member/user_info_update')) {
-    //         _url = "/member/user_info_update";
-    //     }
-    //
-    //     // Post 방식으로 서버와 비동기 통신 함수
-    //     fetchCall(_url, 'POST', jsonData, function (data) {
-    //         if (data.status === "OK") {
-    //             // 회원수정
-    //             if (location.pathname.startsWith('/member/user_info_update')) {
-    //                 alert(data.message);
-    //                 // 회원가입
-    //             } else {
-    //                 location.href = '/member/join_result';
-    //             }
-    //         } else {
-    //             alert('잠시 후 다시 시도하시거나 \n관리자에게 문의하세요.');
-    //         }
-    //     })
-    // })
+    joinEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // 아이디 중복체크 확인
+        if (idCheckNum == 0 && location.pathname.startsWith('/member/join')) {
+            alert('아이디 중복체크를 해주세요');
+            return;
+        }
+        // 비밀번호 확인
+        const pwEl = document.getElementById('input_pw').value.trim();
+        const pwChEl = document.getElementById('input_pw_ch').value.trim();
+        if (pwEl != pwChEl) {
+            alert('같은 비밀번호를 입력해주세요');
+            return;
+        }
+        // 이메일 형식 확인
+        // const emailEl = document.getElementById('input_email').value.trim();
+        //     ^ (== 시작/^), [^\s@]+ (== 공백 문자와 @를 제외한 한 글자 이상의 연속된 문자)
+        //     @ (== @반드시 포함), [^\s@]+ (== @를 제외한 한 글자 이상의 연속된 문자)
+        //     \. (== . 이후), [^\s@]+ (== 역시 공백 문자와 @를 제외한 문자), $ (== 이렇게 끝나야 함)
+        // const emailRegex = /^[^\s@]/;
+        // if (!emailRegex.test(emailEl)) {
+        //     alert('올바른 이메일 형식을 입력해주세요');
+        //     return;
+        // }
+        // 휴대폰 번호 형식 확인
+        const phone = document.getElementById('input_phone').value.trim();
+        const phoneRegex = /^(010[-.\s]?\d{4}[-.\s]?\d{4}|01[16789][-.\s]?\d{3,4}[-.\s]?\d{4})$/;
+        if (!phoneRegex.test(phone)) {
+            alert("휴대폰 번호 형식이 올바르지 않습니다.");
+            return;
+        }
+        // form 데이터 수집
+        const formData = new FormData(this);
+        // memberDTO에 들어갈 수 있는 json 타입만 추출
+        // const jsonData = Object.fromEntries(formData.entries());
+        const jsonData = {};
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+        // 서버로 데이터 전송
+        fetch('/rest/join_insert', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('서버 응답에 문제가 있습니다.');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.status === "OK") {
+                    alert(result.message);
+                    location.href = '/member/join_result';
+                } else {
+                    alert('잠시 후 다시 시도하시거나 \n관리자에게 문의하세요.');
+                }
+            })
+            .catch(error => {
+                console.error('에러 발생:', error);
+                alert('회원가입 처리 중 문제가 발생했습니다.');
+            });
+    });
 
     // 회원정보 수정
 

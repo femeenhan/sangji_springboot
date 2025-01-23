@@ -5,6 +5,7 @@ import com.project.sangji.model.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -24,6 +25,10 @@ public class MemberService {
 
     public MemberDTO login(String id, String pw) {
         return memberMapper.login(id, pw);
+    }
+
+    public void updateMember(MemberDTO dto) {
+        memberMapper.updateMember(dto);
     }
 
 }

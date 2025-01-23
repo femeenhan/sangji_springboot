@@ -29,4 +29,17 @@
           AND pw = #{pw}
     </select>
 
+    <update id="updateMember" parameterType="com.project.sangji.model.MemberDTO">
+        UPDATE MEMBER
+        SET pw=#{pw},
+            name=#{name},
+            email=#{email},
+            phone=#{phone},
+            birth=#{birth},
+            zipcode=#{zipcode},
+            addr1=#{addr1},
+            addr2=#{addr2}
+        WHERE id = #{id}
+    </update>
+
 </mapper>
