@@ -17,10 +17,10 @@ window.addEventListener('DOMContentLoaded', function (message) {
     const loginEl = document.getElementById('memberLoginBtn');
     if (loginEl) {
         loginEl.addEventListener('click', function () {
-            // const idEl = document.querySelector('.login_info input[name=id]');
-            // const pwEl = document.querySelector('.login_info input[name=pass]');
-            const idEl = document.querySelector('.login_info input[name=username]');
-            const pwEl = document.querySelector('.login_info input[name=password]');
+            const idEl = document.querySelector('.login_info input[name=id]');
+            const pwEl = document.querySelector('.login_info input[name=pass]');
+            // const idEl = document.querySelector('.login_info input[name=username]');
+            // const pwEl = document.querySelector('.login_info input[name=password]');
             const id = idEl.value.trim();
             const pw = pwEl.value.trim();
 
@@ -58,10 +58,10 @@ window.addEventListener('DOMContentLoaded', function (message) {
     // 로그아웃 확인 (html 안에 script)
 
     // 아이디, 비밀번호 엔터키 이벤트 (로그인)
-    // const idEnter = document.querySelector('.login_info input[name=id]');
-    // const passEnter = document.querySelector('.login_info input[name=pass]');
-    const idEl = document.querySelector('.login_info input[name=username]');
-    const pwEl = document.querySelector('.login_info input[name=password]');
+    const idEnter = document.querySelector('.login_info input[name=id]');
+    const passEnter = document.querySelector('.login_info input[name=pass]');
+    // const idEl = document.querySelector('.login_info input[name=username]');
+    // const pwEl = document.querySelector('.login_info input[name=password]');
 
     if (idEnter) {
         idEnter.addEventListener('keyup', function (e) {

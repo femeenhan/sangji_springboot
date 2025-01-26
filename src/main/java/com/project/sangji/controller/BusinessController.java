@@ -10,7 +10,7 @@ public class BusinessController {
     @GetMapping("/biz_page1")
     public void biz_page1() {
     }
-    @GetMapping("/biz_page2")
+
     public void biz_page2() {
     }
     @GetMapping("/biz_page3")

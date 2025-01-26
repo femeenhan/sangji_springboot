@@ -25,16 +25,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(
                                 "/",
-                                "/member/join",
-                                "/member/join_insert",
-                                "/member/login_main",
-                                "/member/login_find_info",
+                                "/member/**",
                                 "/rest/**",  // REST API 엔드포인트 허용
                                 "/intro/**",
-                                "/business/**",
+                                "/main_business/**",
                                 "/procedure/**",
                                 "/customers/**",
-                                "/board/**",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",
