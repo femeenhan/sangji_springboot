@@ -40,6 +40,8 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+                .httpBasic(basic -> basic.disable())
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .formLogin((form) -> form
                         .loginPage("/member/login_main")
                         .loginProcessingUrl("/member/loginOk")

@@ -64,19 +64,28 @@ window.addEventListener('DOMContentLoaded', function () {
   // 지도
   var location = document.getElementById('map');
   if (location) {
-    var marker = {
-      position: new kakao.maps.LatLng(36.35917, 127.387196),
-      text: '상지국제특허법률사무소',
-    };
+    // var marker = {
+    //   position: new kakao.maps.LatLng(36.35917, 127.387196),
+    //   text: '상지국제특허법률사무소',
+    // };
 
     var options = {
       center: new kakao.maps.LatLng(36.35917, 127.387196),
       level: 4,
-      marker: marker,
+      // marker: marker,
     };
 
-    var map = new kakao.maps.StaticMap(location, options);
+    var map = new kakao.maps.Map(location, options);
 
+    // 마커 생성
+    var marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(36.35917, 127.387196),
+      map: map,
+    });
+
+    // 줌 컨트롤 추가
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     // var zoomControl = new kakao.maps.ZoomControl();
     // map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     //

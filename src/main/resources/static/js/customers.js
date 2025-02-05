@@ -87,9 +87,79 @@ window.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    const fileEl = document.getElementById('file_box');
+    if (fileEl) {
+        fileEl.addEventListener('change', function(event){
+            handleFileChange(event);
+        });
+
+        const deleteBtn = document.getElementById('delete_file');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', handleFileDelete);
+        }
+    }
 });
 
+
+
+function handleFileChange(event) {
+    if(!event || !event.target) return;
+
+    const fileInfo = document.getElementById('file_info');
+    const fileName = document.getElementById('file_name');
+    const file = event.target.files[0];
+    if (file) {
+        // 파일 크기 체크 (예: 10MB 이하)
+        if (file.size > 10 * 1024 * 1024) {
+            alert('첨부 파일 크기는 10MB를 초과할 수 없습니다.');
+            event.target.value = '';
+            return;
+        }
+        // 파일 확장자 체크 (예: jpg, jpeg, png)
+        const allowedExtensions = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png'];
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        if (!allowedExtensions.includes(fileExtension)) {
+            alert('허용되지 않는 파일 형식입니다.');
+            event.target.value = '';
+            return;
+        }
+
+        
+        // 파일 이름이 너무 길 경우 축약
+        const displayName = file.name.length > 30 ? file.name.substring(0, 27) + '...' : file.name;
+
+        fileName.textContent = displayName;
+        fileInfo.style.display = 'block';
+    } else {
+        fileInfo.style.display = 'none';
+    }
+        // 삭제 버튼 표시
+        const deleteBtn = document.getElementById('delete_file');
+        if (deleteBtn && file.name.length > 0) {
+            deleteBtn.style.display = 'inline-block';
+        }
+
+
+
+}
+
+function handleFileDelete() {
+    const fileInfo = document.getElementById('file_info');
+    const fileInput = document.getElementById('file_box');
+    const fileName = document.getElementById('file_name');
+    // 파일 입력 필드 초기화
+    if(fileInput) fileInput.value = '';
+    // 파일명 초기화
+    if(fileName) fileName.textContent = '';
+    // 파일 정보 숨김
+    if(fileInfo) fileInfo.style.display = 'none';
+}
+
+
+
 function isContains(target, chars) {
+
     for (var i = 0; i < target.value.length; i++) {
         if (chars.indexOf(target.value.charAt(i)) != -1) return true;
     }

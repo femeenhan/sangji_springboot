@@ -22,6 +22,7 @@ public class FetchController {
     @GetMapping("/idCheck/{id}")
     public ResponseEntity<Map<String, String>> idCheck(@PathVariable String id) {
         int idCheck = ms.idCheck(id);
+        System.out.println(idCheck);
         Map<String, String> response = new HashMap<>();
         if (idCheck == 1) {
             response.put("message", "사용 중인 아이디입니다. 다른 아이디를 입력하세요.");
@@ -30,6 +31,7 @@ public class FetchController {
             response.put("message", "사용 가능한 아이디입니다.\n사용하시겠습니까?");
             response.put("status", "0");
         }
+        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 
@@ -37,16 +39,19 @@ public class FetchController {
     @PostMapping("/join_insert")
     public ResponseEntity<Map<String, String>> joinInsert(@RequestBody MemberDTO memberDTO) {
         Map<String, String> response = new HashMap<>();
+        System.out.println("controller!!");
         try {
             // 비밀번호 암호화
             memberDTO.setPw(passwordEncoder.encode(memberDTO.getPw()));
             ms.join(memberDTO);
+            System.out.println(memberDTO.toString());
             response.put("status", "OK");
             response.put("message", "회원가입이 완료되었습니다.");
         } catch (Exception e) {
             response.put("status", "ERROR");
             response.put("message", "회원가입 처리 중 오류가 발생했습니다.");
         }
+        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 

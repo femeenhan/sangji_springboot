@@ -6,6 +6,7 @@
 <head layout:fragment="config">
     <title>상지국제특허</title>
     <link rel="stylesheet" href="/css/admin.css"/>
+    <script src="/js/customers.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -51,8 +52,16 @@
                                 </div>
                                 <div class="input_request">
                                     <label for="file_box"></label>
-                                    <input type="file" name="file" id="file_box"/>
+                                    <input type="file" name="file" id="file_box" onchange="handleFileChange(event)"/>
+                                    <div id="file_info">
+                                            <button type="button" id="delete_file" onclick="handleFileDelete()" class="delete_btn" style="display: none;">X</button>
+                                    </div>
                                 </div>
+
+
+
+
+
                             </div>
                             <div class="btn_wrap">
                                 <button class="save" type="submit">저장</button>

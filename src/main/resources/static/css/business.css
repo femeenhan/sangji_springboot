@@ -92,6 +92,9 @@
   width: 50%;
   margin: 0 auto;
 }
+.page_bottom .sub_section {
+  padding: 0 20px;
+}
 
 .sub_section .sub_img {
   display: flex;
@@ -99,7 +102,7 @@
   max-width: 1440px;
   margin: 0 auto;
   height: 250px;
-  margin-bottom: 50px;
+  margin-bottom: 50px;  
 }
 
 .sub_section .sub_img img {
